@@ -1,0 +1,13 @@
+package otherapp;
+
+import testapp.MyClass as newType;
+
+class Other {
+    public int x, y;
+    private newType t;
+    public void f(int[][] ar) {
+        final int x;
+        ar.lengt();
+        t.find(0.3);
+    }
+}

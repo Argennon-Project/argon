@@ -1,0 +1,29 @@
+package testapp;
+
+import otherapp.Other;
+
+public class Main {
+    private float feild;
+    private MyClass cc;
+
+    public static void main(Other b, String s) {
+        double x;
+        x = cc.fff.cc.fff.c + 3;
+        final int yfun, z;
+        x = (h + y) + z * w.j;
+        {
+            Type w;
+        }
+
+    }
+
+
+
+}
+
+public class MyClass {
+    Main fff;
+    public int add(int x, MyClass c) {}
+
+    public boolean find(MyClass x, float y) {}
+}
