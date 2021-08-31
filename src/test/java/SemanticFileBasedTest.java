@@ -9,8 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-import static org.argonlang.argc.semantic.SemanticAnalyzer.MessageFormat.NOT_ACCESSIBLE_ERROR;
-import static org.argonlang.argc.semantic.SemanticAnalyzer.MessageFormat.NOT_DEFINED_IN_PKG_ERROR;
+import static org.argonlang.argc.semantic.SemanticAnalyzer.MessageFormat.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SemanticFileBasedTest {
@@ -34,12 +33,18 @@ class SemanticFileBasedTest {
     }
 
     @Test
-    @DisplayName("import access control")
+    @DisplayName("advanced import test")
     void notDefined() throws IOException {
         String folderName = "import2";
+        expected.changeCurrentFile("src1.arg");
+        expected.error(11, NOT_DEFINED_IN_TYPE_ERROR, "z", "Test");
+
         expected.changeCurrentFile("src2.arg");
         expected.error(3, NOT_ACCESSIBLE_ERROR, "p1.A", "p2");
-        expected.error(7, NOT_ACCESSIBLE_ERROR, "A", "p2");
+        expected.error(5, IMPORT_EXISTS_ERROR, "C", "p1.C");
+        expected.error(9, NOT_ACCESSIBLE_ERROR, "A", "p2");
+        expected.error(14, NOT_DEFINED_IN_TYPE_ERROR, "w", "D");
+        expected.error(15, NOT_DEFINED_IN_TYPE_ERROR, "y", "B");
 
         compileAndAssert(folderName);
     }

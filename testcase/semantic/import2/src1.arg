@@ -1,5 +1,17 @@
 package p1;
 
+// circular import
+import p2.Test;
+
 class A {}
 
-public class B {}
+public class B {
+    Test t;
+    int f() {
+        t.z = 0;
+    }
+}
+
+public class C {}
+
+public class D {}

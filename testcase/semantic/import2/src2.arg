@@ -2,8 +2,20 @@ package p2;
 
 import p1.A;
 import p1.B;
+import p1.C;
+import p1.D as Alias;
 
-class Test {
+public class Test {
     A a;
     B b;
+    Alias x;
+
+    private int f() {
+        x.w = 0;
+        b.y = 0;
+    }
 }
+
+class C {}
+
+class D {}

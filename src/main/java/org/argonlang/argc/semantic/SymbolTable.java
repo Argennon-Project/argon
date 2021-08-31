@@ -72,7 +72,7 @@ public class SymbolTable {
         try {
             nameSpaceManager.addTo(currentPackage, t, alias);
         } catch (AlreadyExistsException e) {
-            analyzer.error(MessageFormat.IMPORT_EXISTS_ERROR, e, fullyQualifiedName);
+            analyzer.error(MessageFormat.IMPORT_EXISTS_ERROR, alias, fullyQualifiedName);
         }
     }
 

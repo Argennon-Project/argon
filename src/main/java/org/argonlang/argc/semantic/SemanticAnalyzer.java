@@ -45,7 +45,7 @@ public class SemanticAnalyzer {
         NOT_DEFINED_IN_PKG_ERROR("%s is not defined in package %s"),
         NOT_DEFINED_IN_TYPE_ERROR("%s is not defined in type %s"),
         NOT_DEFINED_LOCAL_ERROR("variable %s is not defined in this scope"),
-        IMPORT_EXISTS_ERROR("%s. Use `import %s as <name>` instead"),
+        IMPORT_EXISTS_ERROR("%s is already defined. Use `import %s as <name>` instead"),
         L_VALUE_ERROR("left side of an assignment should be a variable"),
         MODIFIER_ERROR("%s is incompatible with current modifiers"),
         SOME_WARNING("this is warning %1$s");
