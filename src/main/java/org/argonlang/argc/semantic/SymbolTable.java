@@ -2,6 +2,8 @@ package org.argonlang.argc.semantic;
 
 import org.argonlang.argc.allocator.*;
 
+import static org.argonlang.argc.semantic.SemanticAnalyzer.MessageFormat;
+
 public class SymbolTable {
     private ClassType currentClass;
     private String currentPackage;
@@ -41,11 +43,11 @@ public class SymbolTable {
     public Type getType(String name, int dimension) {
         Type t = nameSpaceManager.getFrom(currentPackage, name);
         if (t == null) {
-            analyzer.error(name + " is not defined in " + currentPackage);
+            analyzer.error(MessageFormat.NOT_DEFINED_IN_PKG_ERROR, name, currentPackage);
             return PrimitiveType.UNDEFINED;
         }
         if (!t.isAccessibleFrom(currentPackage)) {
-            analyzer.error(name + " is not accessible from " + currentPackage);
+            analyzer.error(MessageFormat.NOT_ACCESSIBLE_ERROR, name, currentPackage);
         }
         for (int i = 0; i < dimension; i++) {
             t = new ArrayType(t);
@@ -70,7 +72,7 @@ public class SymbolTable {
         try {
             nameSpaceManager.addTo(currentPackage, t, alias);
         } catch (AlreadyExistsException e) {
-            analyzer.error(String.format("%s. Use `import %s as <name>` instead", e, fullyQualifiedName));
+            analyzer.error(MessageFormat.IMPORT_EXISTS_ERROR, e, fullyQualifiedName);
         }
     }
 
@@ -96,7 +98,7 @@ public class SymbolTable {
 
     public void declareLocalVariable(String name, Type t, Modifier m) {
         if (lookUpLocalVariable(name) != null) {
-            analyzer.error(name + " shadows a previous declaration. Argon does not allow shadowing");
+            analyzer.error(MessageFormat.SHADOWING_ERROR, name);
         }
         localScope.addVariable(name, t, m);
     }
@@ -112,11 +114,12 @@ public class SymbolTable {
     private Variable getMember(Type owner, String variableName, boolean fromObject) {
         Variable v = (fromObject) ? owner.getObjectVariable(variableName) : owner.getStaticVariable(variableName);
         if (v == null) {
-            analyzer.error(variableName + " is not defined in type " + owner.getSymbol());
+            analyzer.error(MessageFormat.NOT_DEFINED_IN_TYPE_ERROR, variableName, owner.getSymbol());
             return new Variable(variableName, PrimitiveType.UNDEFINED, 0, owner, new Modifier());
         }
         if (!v.isAccessibleFrom(currentClass)) {
-            analyzer.error(variableName + " is not accessible from " + currentClass.getSymbol());
+            analyzer.error(MessageFormat.MEMBER_NOT_ACCESSIBLE_ERROR,
+                    owner.getSymbol(), variableName, currentClass.getSymbol());
         }
         return v;
     }
@@ -124,7 +127,7 @@ public class SymbolTable {
     public Variable getLocalVariable(String name) {
         Variable v = lookUpLocalVariable(name);
         if (v == null) {
-            analyzer.error("variable " + name + " is not defined in this scope");
+            analyzer.error(MessageFormat.NOT_DEFINED_LOCAL_ERROR, name);
             return new Variable("#undefined#", PrimitiveType.UNDEFINED, 0, null, null);
         }
         return v;

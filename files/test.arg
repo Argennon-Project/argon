@@ -22,7 +22,7 @@ public class Main {
 }
 
 public class MyClass {
-    Main fff;
+    public Main fff;
     public int add(int x, MyClass c) {}
 
     public boolean find(MyClass x, float y) {}

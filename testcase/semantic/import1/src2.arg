@@ -1,0 +1,8 @@
+package pack2;
+
+import pack1.A;
+
+class Test {
+    A a;
+    B b;
+}

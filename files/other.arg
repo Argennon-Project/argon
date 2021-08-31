@@ -7,6 +7,7 @@ class Other {
     private newType t;
     public void f(int[][] ar) {
         final int x;
+        x = t.fff.cc;
         ar.lengt();
         t.find(0.3);
     }

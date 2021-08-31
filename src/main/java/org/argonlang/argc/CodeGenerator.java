@@ -112,8 +112,7 @@ class CodeGenerator extends PackageBasedParserListener {
         if (ctx.bop != null && ctx.bop.getType() == ArgonLexer.ASSIGN) {
             var leftSide = ctx.expression(0);
             if (leftSide.bop != null && leftSide.bop.getType() != ArgonLexer.DOT) {
-                withContext(leftSide);
-                analyzer.error("left side of an assignment should be a variable");
+                error(leftSide, SemanticAnalyzer.MessageFormat.L_VALUE_ERROR);
             }
         }
     }

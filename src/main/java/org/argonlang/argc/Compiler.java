@@ -48,7 +48,7 @@ public class Compiler {
         var semanticAnalyzer = new SemanticAnalyzer(reporter);
 
         // pass 1: find all defined types
-        reporter.generalMessage("Pass 1:---------");
+        reporter.generalMessage("Compiling...");
         for (String fileName : trees.keySet()) {
             semanticAnalyzer.setFile(fileName);
             ParseTreeWalker walker = new ParseTreeWalker();
@@ -56,7 +56,6 @@ public class Compiler {
         }
 
         // pass 2: complete class definitions and find all members
-        reporter.generalMessage("Pass 2:---------");
         for (String fileName : trees.keySet()) {
             semanticAnalyzer.setFile(fileName);
             ParseTreeWalker walker = new ParseTreeWalker();
@@ -64,13 +63,12 @@ public class Compiler {
         }
 
         // pass 3: generate code
-        reporter.generalMessage("Pass 3:---------");
+        reporter.generalMessage("Generating code...");
         for (String fileName : trees.keySet()) {
             semanticAnalyzer.setFile(fileName);
             ParseTreeWalker walker = new ParseTreeWalker();
             walker.walk(new CodeGenerator(semanticAnalyzer), trees.get(fileName));     // walk parse tree
         }
-        System.out.println(semanticAnalyzer);
         return !reporter.errorOccurred();
     }
 }
@@ -95,9 +93,9 @@ class PackageBasedParserListener extends ArgonParserBaseListener {
         );
     }
 
-    protected void error(ParserRuleContext ctx, String message) {
+    protected void error(ParserRuleContext ctx, SemanticAnalyzer.MessageFormat m, Object... args) {
         withContext(ctx);
-        analyzer.error(message);
+        analyzer.error(m, args);
     }
 
     protected Type getType(ArgonParser.TypeTypeContext typeType) {
@@ -139,7 +137,7 @@ class TypeDefiner extends PackageBasedParserListener {
         var modifier = new Modifier();
         for (var token : ctx.classOrInterfaceModifier()) {
             if (!modifier.add(Modifier.Directive.fromSymbol(token.getText()))) {
-                error(token, token.getText() + " is incompatible with current modifiers");
+                error(token, SemanticAnalyzer.MessageFormat.MODIFIER_ERROR, token.getText());
             }
         }
         withContext(ctx.classDeclaration()).defineClass(
@@ -159,7 +157,7 @@ class ClassAllocator extends PackageBasedParserListener {
         Modifier result = new Modifier();
         for (var token : ctx) {
             if (!result.add(Modifier.Directive.fromSymbol(token.getText()))) {
-                error(token, token.getText() + " is incompatible with current modifiers");
+                error(token, SemanticAnalyzer.MessageFormat.MODIFIER_ERROR, token.getText());
             }
         }
         return result;
