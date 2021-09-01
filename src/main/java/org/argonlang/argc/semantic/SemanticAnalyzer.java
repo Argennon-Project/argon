@@ -25,10 +25,6 @@ public class SemanticAnalyzer {
         return this;
     }
 
-    public void error(String message) {
-        reporter.error(line, startColumn, endColumn, message);
-    }
-
     public void error(MessageFormat m, Object... args) {
         reporter.error(line, startColumn, endColumn, String.format(m.formatStr, args));
     }
@@ -40,12 +36,14 @@ public class SemanticAnalyzer {
 
     public enum MessageFormat {
         NOT_ACCESSIBLE_ERROR("%s is not accessible from %s"),
-        MEMBER_NOT_ACCESSIBLE_ERROR("member %2$s of %1$s is not accessible from %3$s"),
+        MEMBER_NOT_ACCESSIBLE("member %2$s of %1$s is not accessible from %3$s"),
         SHADOWING_ERROR("%s shadows a previous declaration. Argon does not allow shadowing"),
-        NOT_DEFINED_IN_PKG_ERROR("%s is not defined in package %s"),
-        NOT_DEFINED_IN_TYPE_ERROR("%s is not defined in type %s"),
-        NOT_DEFINED_LOCAL_ERROR("variable %s is not defined in this scope"),
-        IMPORT_EXISTS_ERROR("%s is already defined. Use `import %s as <name>` instead"),
+        IMPORT_EXISTS("%s is already defined. Use `import %s as <name>` instead"),
+        MEMBER_ALREADY_DEFINED("%s is already defined in type %s"),
+        TYPE_ALREADY_DEFINED("type %s is already defined in %s"),
+        NOT_DEFINED_IN_PKG("%s is not defined in package %s"),
+        NOT_DEFINED_IN_TYPE("%s is not defined in type %s"),
+        NOT_DEFINED_LOCAL("variable %s is not defined in this scope"),
         L_VALUE_ERROR("left side of an assignment should be a variable"),
         MODIFIER_ERROR("%s is incompatible with current modifiers"),
         SOME_WARNING("this is warning %1$s");

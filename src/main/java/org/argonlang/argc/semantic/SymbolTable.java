@@ -19,7 +19,7 @@ public class SymbolTable {
         try {
             nameSpaceManager.addTo(currentPackage, new ClassType(className, currentPackage, m));
         } catch (AlreadyExistsException e) {
-            analyzer.error(e.getMessage());
+            analyzer.error(MessageFormat.TYPE_ALREADY_DEFINED, className, currentPackage);
         }
     }
 
@@ -43,7 +43,7 @@ public class SymbolTable {
     public Type getType(String name, int dimension) {
         Type t = nameSpaceManager.getFrom(currentPackage, name);
         if (t == null) {
-            analyzer.error(MessageFormat.NOT_DEFINED_IN_PKG_ERROR, name, currentPackage);
+            analyzer.error(MessageFormat.NOT_DEFINED_IN_PKG, name, currentPackage);
             return PrimitiveType.UNDEFINED;
         }
         if (!t.isAccessibleFrom(currentPackage)) {
@@ -72,7 +72,7 @@ public class SymbolTable {
         try {
             nameSpaceManager.addTo(currentPackage, t, alias);
         } catch (AlreadyExistsException e) {
-            analyzer.error(MessageFormat.IMPORT_EXISTS_ERROR, alias, fullyQualifiedName);
+            analyzer.error(MessageFormat.IMPORT_EXISTS, alias, fullyQualifiedName);
         }
     }
 
@@ -84,7 +84,7 @@ public class SymbolTable {
         try {
             currentClass.addMethod(new FunctionType(returnType, name, params), m);
         } catch (AlreadyExistsException e) {
-            analyzer.error(e.getMessage());
+            analyzer.error(MessageFormat.MEMBER_ALREADY_DEFINED, name, currentClass);
         }
     }
 
@@ -92,7 +92,7 @@ public class SymbolTable {
         try {
             currentClass.addField(name, t, m);
         } catch (AlreadyExistsException e) {
-            analyzer.error(e.getMessage());
+            analyzer.error(MessageFormat.MEMBER_ALREADY_DEFINED, name, currentClass);
         }
     }
 
@@ -114,11 +114,11 @@ public class SymbolTable {
     private Variable getMember(Type owner, String variableName, boolean fromObject) {
         Variable v = (fromObject) ? owner.getObjectVariable(variableName) : owner.getStaticVariable(variableName);
         if (v == null) {
-            analyzer.error(MessageFormat.NOT_DEFINED_IN_TYPE_ERROR, variableName, owner.getSymbol());
+            analyzer.error(MessageFormat.NOT_DEFINED_IN_TYPE, variableName, owner.getSymbol());
             return new Variable(variableName, PrimitiveType.UNDEFINED, 0, owner, new Modifier());
         }
         if (!v.isAccessibleFrom(currentClass)) {
-            analyzer.error(MessageFormat.MEMBER_NOT_ACCESSIBLE_ERROR,
+            analyzer.error(MessageFormat.MEMBER_NOT_ACCESSIBLE,
                     owner.getSymbol(), variableName, currentClass.getSymbol());
         }
         return v;
@@ -127,7 +127,7 @@ public class SymbolTable {
     public Variable getLocalVariable(String name) {
         Variable v = lookUpLocalVariable(name);
         if (v == null) {
-            analyzer.error(MessageFormat.NOT_DEFINED_LOCAL_ERROR, name);
+            analyzer.error(MessageFormat.NOT_DEFINED_LOCAL, name);
             return new Variable("#undefined#", PrimitiveType.UNDEFINED, 0, null, null);
         }
         return v;

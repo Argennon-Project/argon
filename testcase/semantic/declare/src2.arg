@@ -1,0 +1,11 @@
+package p;
+
+class A {
+    C c;
+    B b;
+    D d;
+}
+
+class B {}
+
+class C {}

@@ -24,27 +24,40 @@ class SemanticFileBasedTest {
 
     @Test
     @DisplayName("simple importing")
-    void memberAccess() throws IOException {
+    void simpleImport() throws IOException {
         String folderName = "import1";
         expected.changeCurrentFile("src2.arg");
-        expected.error(7, NOT_DEFINED_IN_PKG_ERROR, "B", "pack2");
+        expected.error(7, NOT_DEFINED_IN_PKG, "B", "pack2");
 
         compileAndAssert(folderName);
     }
 
     @Test
     @DisplayName("advanced import test")
-    void notDefined() throws IOException {
+    void advancedImport() throws IOException {
         String folderName = "import2";
         expected.changeCurrentFile("src1.arg");
-        expected.error(11, NOT_DEFINED_IN_TYPE_ERROR, "z", "Test");
+        expected.error(11, NOT_DEFINED_IN_TYPE, "z", "Test");
 
         expected.changeCurrentFile("src2.arg");
         expected.error(3, NOT_ACCESSIBLE_ERROR, "p1.A", "p2");
-        expected.error(5, IMPORT_EXISTS_ERROR, "C", "p1.C");
+        expected.error(5, IMPORT_EXISTS, "C", "p1.C");
         expected.error(9, NOT_ACCESSIBLE_ERROR, "A", "p2");
-        expected.error(14, NOT_DEFINED_IN_TYPE_ERROR, "w", "D");
-        expected.error(15, NOT_DEFINED_IN_TYPE_ERROR, "y", "B");
+        expected.error(14, NOT_DEFINED_IN_TYPE, "w", "D");
+        expected.error(15, NOT_DEFINED_IN_TYPE, "y", "B");
+
+        compileAndAssert(folderName);
+    }
+
+    @Test
+    @DisplayName("declare")
+    void declare() throws IOException {
+        String folderName = "declare";
+        expected.changeCurrentFile("src1.arg");
+        expected.error(3, TYPE_ALREADY_DEFINED, "B", "p");
+
+        expected.changeCurrentFile("src2.arg");
+        expected.error(6, NOT_DEFINED_IN_PKG, "D", "p");
 
         compileAndAssert(folderName);
     }

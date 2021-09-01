@@ -24,7 +24,7 @@ public class StringBasedReporter implements MessageReporter {
 
     @Override
     public void warning(int line, int start, int end, String message) {
-        errors.add(String.format("[%s%4d, column %d] Warning: %s.", currentFile, line, start, message));
+        errors.add(String.format("[%s%4d:%d] Warning: %s.", currentFile, line, start, message));
     }
 
     public String getErrorMessages() {
