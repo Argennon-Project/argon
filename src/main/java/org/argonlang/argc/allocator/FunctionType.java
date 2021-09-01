@@ -63,6 +63,6 @@ public class FunctionType extends Type {
     }
 
     public String getFullName() {
-        return String.format("method %s(%s)", method, getParamsTypeAssertion());
+        return String.format("%s(%s)", method, getParamsTypeAssertion());
     }
 }

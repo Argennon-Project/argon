@@ -1,0 +1,37 @@
+package p1;
+
+public class A {
+    private int x;
+    int y;
+    public int z;
+
+    private int f();
+    int g();
+    public int h();
+
+
+
+    void test() {
+        A aObj;
+        aObj.x = 0;
+        aObj.y = 0;
+        aObj.z = 0;
+
+        aObj.f();
+        aObj.g();
+        aObj.h();
+    }
+}
+
+class B {
+    void test() {
+        A aObj;
+        aObj.x = 0;
+        aObj.y = 0;
+        aObj.z = 0;
+
+        aObj.f();
+        aObj.g();
+        aObj.h();
+    }
+}

@@ -1,6 +1,11 @@
 package p;
 
 class A {
+    int f() {
+        E e;
+        F f;
+    }
+
     C c;
     B b;
     D d;

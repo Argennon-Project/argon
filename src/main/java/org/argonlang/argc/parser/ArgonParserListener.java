@@ -1,4 +1,4 @@
-// Generated from /home/aybehrouz/IdeaProjects/argon/src/org/argonlang/argc/grammar/ArgonParser.g4 by ANTLR 4.9.1
+// Generated from /home/aybehrouz/IdeaProjects/maven/argon/src/main/java/org/argonlang/argc/grammar/ArgonParser.g4 by ANTLR 4.9.1
 package org.argonlang.argc.parser;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 

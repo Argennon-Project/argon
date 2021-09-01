@@ -1,13 +1,16 @@
-// Generated from /home/aybehrouz/IdeaProjects/argon/src/org/argonlang/argc/grammar/ArgonParser.g4 by ANTLR 4.9.1
+// Generated from /home/aybehrouz/IdeaProjects/maven/argon/src/main/java/org/argonlang/argc/grammar/ArgonParser.g4 by ANTLR 4.9.1
 package org.argonlang.argc.parser;
-import org.antlr.v4.runtime.atn.*;
-import org.antlr.v4.runtime.dfa.DFA;
+
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.misc.*;
-import org.antlr.v4.runtime.tree.*;
+import org.antlr.v4.runtime.atn.ATN;
+import org.antlr.v4.runtime.atn.ATNDeserializer;
+import org.antlr.v4.runtime.atn.ParserATNSimulator;
+import org.antlr.v4.runtime.atn.PredictionContextCache;
+import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.tree.ParseTreeListener;
+import org.antlr.v4.runtime.tree.TerminalNode;
+
 import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class ArgonParser extends Parser {
@@ -224,11 +227,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitCompilationUnit(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitCompilationUnit(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final CompilationUnitContext compilationUnit() throws RecognitionException {
@@ -307,11 +305,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitPackageDeclaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitPackageDeclaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PackageDeclarationContext packageDeclaration() throws RecognitionException {
@@ -375,11 +368,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitImportDeclaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitImportDeclaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -464,11 +452,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitTypeDeclaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitTypeDeclaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -583,11 +566,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitModifier(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitModifier(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ModifierContext modifier() throws RecognitionException {
@@ -691,11 +669,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitClassOrInterfaceModifier(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitClassOrInterfaceModifier(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ClassOrInterfaceModifierContext classOrInterfaceModifier() throws RecognitionException {
@@ -766,11 +739,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitVariableModifier(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitVariableModifier(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final VariableModifierContext variableModifier() throws RecognitionException {
@@ -838,11 +806,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitClassDeclaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitClassDeclaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -931,11 +894,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitTypeParameters(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitTypeParameters(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final TypeParametersContext typeParameters() throws RecognitionException {
@@ -1003,11 +961,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitTypeParameter(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitTypeParameter(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1101,11 +1054,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitTypeBound(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitTypeBound(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final TypeBoundContext typeBound() throws RecognitionException {
@@ -1173,11 +1121,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitEnumDeclaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitEnumDeclaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1274,11 +1217,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitEnumConstants(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitEnumConstants(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final EnumConstantsContext enumConstants() throws RecognitionException {
@@ -1346,11 +1284,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitEnumConstant(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitEnumConstant(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1433,11 +1366,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitEnumBodyDeclarations(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitEnumBodyDeclarations(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final EnumBodyDeclarationsContext enumBodyDeclarations() throws RecognitionException {
@@ -1500,11 +1428,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitInterfaceDeclaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitInterfaceDeclaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1577,11 +1500,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitClassBody(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitClassBody(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ClassBodyContext classBody() throws RecognitionException {
@@ -1643,11 +1561,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitInterfaceBody(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitInterfaceBody(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final InterfaceBodyContext interfaceBody() throws RecognitionException {
@@ -1708,11 +1621,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitClassBodyDeclaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitClassBodyDeclaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -1801,11 +1709,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitTemp(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitTemp(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class InnerInterfaceDeclarationContext extends MemberDeclarationContext {
 		public InterfaceDeclarationContext interfaceDeclaration() {
@@ -1825,11 +1728,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitInnerInterfaceDeclaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitInnerInterfaceDeclaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 	public static class InnerEnumDeclarationContext extends MemberDeclarationContext {
@@ -1851,11 +1749,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitInnerEnumDeclaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitInnerEnumDeclaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class ConstructorDeclarationFullContext extends MemberDeclarationContext {
 		public ConstructorDeclarationContext constructorDeclaration() {
@@ -1875,11 +1768,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitConstructorDeclarationFull(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitConstructorDeclarationFull(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 	public static class InnerClassDeclarationContext extends MemberDeclarationContext {
@@ -1901,11 +1789,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitInnerClassDeclaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitInnerClassDeclaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class MethodDeclarationFullContext extends MemberDeclarationContext {
 		public MethodDeclarationContext methodDeclaration() {
@@ -1925,11 +1808,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitMethodDeclarationFull(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitMethodDeclarationFull(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 	public static class GenericMethodDeclarationFullContext extends MemberDeclarationContext {
@@ -1951,11 +1829,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitGenericMethodDeclarationFull(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitGenericMethodDeclarationFull(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class FieldDeclarationFullContext extends MemberDeclarationContext {
 		public FieldDeclarationContext fieldDeclaration() {
@@ -1975,11 +1848,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitFieldDeclarationFull(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitFieldDeclarationFull(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2246,11 +2114,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitMethodDeclaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitMethodDeclaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final MethodDeclarationContext methodDeclaration() throws RecognitionException {
@@ -2326,11 +2189,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitMethodBody(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitMethodBody(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final MethodBodyContext methodBody() throws RecognitionException {
@@ -2385,11 +2243,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitTypeTypeOrVoid(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitTypeTypeOrVoid(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2458,11 +2311,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitGenericMethodDeclaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitGenericMethodDeclaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final GenericMethodDeclarationContext genericMethodDeclaration() throws RecognitionException {
@@ -2506,11 +2354,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitGenericConstructorDeclaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitGenericConstructorDeclaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2561,11 +2404,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitConstructorDeclaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitConstructorDeclaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2627,11 +2465,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitFieldDeclaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitFieldDeclaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final FieldDeclarationContext fieldDeclaration() throws RecognitionException {
@@ -2681,11 +2514,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitInterfaceBodyDeclaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitInterfaceBodyDeclaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2803,11 +2631,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitInterfaceMemberDeclaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitInterfaceMemberDeclaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final InterfaceMemberDeclarationContext interfaceMemberDeclaration() throws RecognitionException {
@@ -2906,11 +2729,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitConstDeclaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitConstDeclaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ConstDeclarationContext constDeclaration() throws RecognitionException {
@@ -2980,11 +2798,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitConstantDeclarator(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitConstantDeclarator(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3079,11 +2892,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitInterfaceMethodDeclaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitInterfaceMethodDeclaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3226,11 +3034,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitInterfaceMethodModifier(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitInterfaceMethodModifier(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final InterfaceMethodModifierContext interfaceMethodModifier() throws RecognitionException {
@@ -3317,11 +3120,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitGenericInterfaceMethodDeclaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitGenericInterfaceMethodDeclaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final GenericInterfaceMethodDeclarationContext genericInterfaceMethodDeclaration() throws RecognitionException {
@@ -3369,11 +3167,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitVariableDeclarators(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitVariableDeclarators(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3433,11 +3226,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitVariableDeclarator(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitVariableDeclarator(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final VariableDeclaratorContext variableDeclarator() throws RecognitionException {
@@ -3492,11 +3280,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitVariableInitializer(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitVariableInitializer(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3593,11 +3376,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitArrayInitializer(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitArrayInitializer(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ArrayInitializerContext arrayInitializer() throws RecognitionException {
@@ -3690,11 +3468,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitClassOrInterfaceType(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitClassOrInterfaceType(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ClassOrInterfaceTypeContext classOrInterfaceType() throws RecognitionException {
@@ -3781,11 +3554,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitTypeArgument(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitTypeArgument(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -3881,11 +3649,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitQualifiedNameList(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitQualifiedNameList(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final QualifiedNameListContext qualifiedNameList() throws RecognitionException {
@@ -3943,11 +3706,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitFormalParameters(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitFormalParameters(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4010,11 +3768,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitFormalParameterList(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitFormalParameterList(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4107,11 +3860,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitFormalParameter(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitFormalParameter(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final FormalParameterContext formalParameter() throws RecognitionException {
@@ -4183,11 +3931,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitLastFormalParameter(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitLastFormalParameter(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4269,11 +4012,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitQualifiedName(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitQualifiedName(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final QualifiedNameContext qualifiedName() throws RecognitionException {
@@ -4338,11 +4076,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitLiteral(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitLiteral(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4431,11 +4164,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitIntegerLiteral(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitIntegerLiteral(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final IntegerLiteralContext integerLiteral() throws RecognitionException {
@@ -4482,11 +4210,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitFloatLiteral(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitFloatLiteral(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4541,11 +4264,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitAltAnnotationQualifiedName(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitAltAnnotationQualifiedName(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4616,11 +4334,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitAnnotation(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitAnnotation(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4713,11 +4426,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitElementValuePairs(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitElementValuePairs(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ElementValuePairsContext elementValuePairs() throws RecognitionException {
@@ -4776,11 +4484,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitElementValuePair(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitElementValuePair(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ElementValuePairContext elementValuePair() throws RecognitionException {
@@ -4829,11 +4532,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitElementValue(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitElementValue(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4902,11 +4600,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitElementValueArrayInitializer(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitElementValueArrayInitializer(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -4992,11 +4685,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitAnnotationTypeDeclaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitAnnotationTypeDeclaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final AnnotationTypeDeclarationContext annotationTypeDeclaration() throws RecognitionException {
@@ -5046,11 +4734,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitAnnotationTypeBody(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitAnnotationTypeBody(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -5114,11 +4797,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitAnnotationTypeElementDeclaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitAnnotationTypeElementDeclaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -5229,11 +4907,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitAnnotationTypeElementRest(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitAnnotationTypeElementRest(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -5355,11 +5028,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitAnnotationMethodOrConstantRest(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitAnnotationMethodOrConstantRest(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final AnnotationMethodOrConstantRestContext annotationMethodOrConstantRest() throws RecognitionException {
@@ -5415,11 +5083,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitAnnotationMethodRest(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitAnnotationMethodRest(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final AnnotationMethodRestContext annotationMethodRest() throws RecognitionException {
@@ -5474,11 +5137,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitAnnotationConstantRest(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitAnnotationConstantRest(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final AnnotationConstantRestContext annotationConstantRest() throws RecognitionException {
@@ -5518,11 +5176,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitDefaultValue(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitDefaultValue(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -5569,11 +5222,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitBlock(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitBlock(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -5637,11 +5285,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitBlockStatement(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitBlockStatement(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -5713,11 +5356,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitLocalVariableDeclaration(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitLocalVariableDeclaration(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final LocalVariableDeclarationContext localVariableDeclaration() throws RecognitionException {
@@ -5785,11 +5423,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitLocalTypeDeclaration(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitLocalTypeDeclaration(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -5946,11 +5579,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitStatement(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitStatement(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -6332,11 +5960,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitCatchClause(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitCatchClause(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final CatchClauseContext catchClause() throws RecognitionException {
@@ -6410,11 +6033,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitCatchType(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitCatchType(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final CatchTypeContext catchType() throws RecognitionException {
@@ -6472,11 +6090,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitFinallyBlock(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitFinallyBlock(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final FinallyBlockContext finallyBlock() throws RecognitionException {
@@ -6520,11 +6133,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitResourceSpecification(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitResourceSpecification(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -6586,11 +6194,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitResources(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitResources(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -6660,11 +6263,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitResource(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitResource(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -6737,11 +6335,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitSwitchBlockStatementGroup(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitSwitchBlockStatementGroup(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final SwitchBlockStatementGroupContext switchBlockStatementGroup() throws RecognitionException {
@@ -6813,11 +6406,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitSwitchLabel(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitSwitchLabel(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -6907,11 +6495,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitForControl(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitForControl(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ForControlContext forControl() throws RecognitionException {
@@ -7000,11 +6583,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitForInit(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitForInit(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ForInitContext forInit() throws RecognitionException {
@@ -7067,11 +6645,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitEnhancedForControl(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitEnhancedForControl(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -7137,11 +6710,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitParExpression(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitParExpression(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ParExpressionContext parExpression() throws RecognitionException {
@@ -7191,11 +6759,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitExpressionList(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitExpressionList(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -7257,11 +6820,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitMethodCall(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitMethodCall(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -7468,11 +7026,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitExpression(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -8061,11 +7614,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitLambdaExpression(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitLambdaExpression(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final LambdaExpressionContext lambdaExpression() throws RecognitionException {
@@ -8118,11 +7666,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitLambdaParameters(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitLambdaParameters(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -8218,11 +7761,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitLambdaBody(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitLambdaBody(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -8331,11 +7869,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitPrimary(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitPrimary(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -8464,11 +7997,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitClassType(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitClassType(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ClassTypeContext classType() throws RecognitionException {
@@ -8556,11 +8084,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitCreator(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitCreator(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -8660,11 +8183,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitCreatedName(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitCreatedName(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -8769,11 +8287,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitInnerCreator(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitInnerCreator(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final InnerCreatorContext innerCreator() throws RecognitionException {
@@ -8839,11 +8352,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitArrayCreatorRest(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitArrayCreatorRest(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -8997,11 +8505,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitClassCreatorRest(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitClassCreatorRest(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ClassCreatorRestContext classCreatorRest() throws RecognitionException {
@@ -9054,11 +8557,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitExplicitGenericInvocation(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitExplicitGenericInvocation(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ExplicitGenericInvocationContext explicitGenericInvocation() throws RecognitionException {
@@ -9101,11 +8599,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitTypeArgumentsOrDiamond(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitTypeArgumentsOrDiamond(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -9163,11 +8656,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitNonWildcardTypeArgumentsOrDiamond(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitNonWildcardTypeArgumentsOrDiamond(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final NonWildcardTypeArgumentsOrDiamondContext nonWildcardTypeArgumentsOrDiamond() throws RecognitionException {
@@ -9224,11 +8712,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitNonWildcardTypeArguments(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitNonWildcardTypeArguments(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final NonWildcardTypeArgumentsContext nonWildcardTypeArguments() throws RecognitionException {
@@ -9278,11 +8761,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitTypeList(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitTypeList(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -9353,11 +8831,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitTypeType(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitTypeType(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -9451,11 +8924,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitSimpleType(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitSimpleType(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final SimpleTypeContext simpleType() throws RecognitionException {
@@ -9524,11 +8992,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitPrimitiveType(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitPrimitiveType(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final PrimitiveTypeContext primitiveType() throws RecognitionException {
@@ -9585,11 +9048,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitTypeArguments(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitTypeArguments(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -9652,11 +9110,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitSuperSuffix(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitSuperSuffix(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -9729,11 +9182,6 @@ public class ArgonParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitExplicitGenericInvocationSuffix(this);
 		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitExplicitGenericInvocationSuffix(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ExplicitGenericInvocationSuffixContext explicitGenericInvocationSuffix() throws RecognitionException {
@@ -9793,11 +9241,6 @@ public class ArgonParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArgonParserListener ) ((ArgonParserListener)listener).exitArguments(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArgonParserVisitor ) return ((ArgonParserVisitor<? extends T>)visitor).visitArguments(this);
-			else return visitor.visitChildren(this);
 		}
 	}
 

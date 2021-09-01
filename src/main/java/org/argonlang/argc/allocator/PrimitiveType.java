@@ -11,7 +11,7 @@ public class PrimitiveType extends Type {
     public static final PrimitiveType FLOAT = new PrimitiveType("float", 8, false);
     public static final PrimitiveType STRING = new PrimitiveType("string", 4, true);
     public static final PrimitiveType VOID = new PrimitiveType("void", 0, false);
-    public static final PrimitiveType UNDEFINED = new PrimitiveType("#undefined#", 0, false);
+    public static final PrimitiveType UNDEFINED = new PrimitiveType("'undefined'", 0, false);
 
     private final int size;
     private final boolean isReference;

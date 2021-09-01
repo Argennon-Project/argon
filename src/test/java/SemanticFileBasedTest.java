@@ -29,7 +29,7 @@ class SemanticFileBasedTest {
         expected.changeCurrentFile("src2.arg");
         expected.error(7, NOT_DEFINED_IN_PKG, "B", "pack2");
 
-        compileAndAssert(folderName);
+        compileAndCheck(folderName);
     }
 
     @Test
@@ -46,23 +46,63 @@ class SemanticFileBasedTest {
         expected.error(14, NOT_DEFINED_IN_TYPE, "w", "D");
         expected.error(15, NOT_DEFINED_IN_TYPE, "y", "B");
 
-        compileAndAssert(folderName);
+        compileAndCheck(folderName);
     }
 
     @Test
-    @DisplayName("declare")
-    void declare() throws IOException {
-        String folderName = "declare";
+    @DisplayName("type declaration")
+    void typeDeclare() throws IOException {
+        String folderName = "declare1";
         expected.changeCurrentFile("src1.arg");
         expected.error(3, TYPE_ALREADY_DEFINED, "B", "p");
 
         expected.changeCurrentFile("src2.arg");
-        expected.error(6, NOT_DEFINED_IN_PKG, "D", "p");
+        expected.error(6, NOT_DEFINED_IN_PKG, "F", "p");
+        expected.error(11, NOT_DEFINED_IN_PKG, "D", "p");
 
-        compileAndAssert(folderName);
+        compileAndCheck(folderName);
     }
 
-    private void compileAndAssert(String folderName) throws IOException {
+    @Test
+    @DisplayName("variable declaration")
+    void varDeclare() throws IOException {
+        String folderName = "declare2";
+
+        expected.changeCurrentFile("src1.arg");
+        expected.error(5, SHADOWING_ERROR, "x");
+        expected.error(9, SHADOWING_ERROR, "z");
+        expected.error(21, SHADOWING_ERROR, "w");
+        expected.error(18, SHADOWING_ERROR, "aa");
+        expected.error(27, SHADOWING_ERROR, "s");
+        expected.error(40, SHADOWING_ERROR, "x");
+        expected.error(19, NOT_DEFINED_LOCAL, "q");
+        expected.error(40, METHOD_ALREADY_DEFINED, "f(int,A)", "A");
+        expected.error(42, METHOD_ALREADY_DEFINED, "g()", "A");
+        expected.error(46, METHOD_ALREADY_DEFINED, "f()", "A");
+        expected.error(51, FIELD_ALREADY_DEFINED, "s", "A");
+        expected.error(51, FIELD_ALREADY_DEFINED, "x", "A");
+
+        compileAndCheck(folderName);
+    }
+
+    @Test
+    @DisplayName("access modifiers")
+    void access() throws IOException {
+        String folderName = "access";
+        expected.changeCurrentFile("src1.arg");
+        expected.error(29, MEMBER_NOT_ACCESSIBLE, "A", "x", "B");
+        expected.error(33, MEMBER_NOT_ACCESSIBLE, "A", "f()", "B");
+
+        expected.changeCurrentFile("src2.arg");
+        expected.error(8, MEMBER_NOT_ACCESSIBLE, "A", "x", "C");
+        expected.error(9, MEMBER_NOT_ACCESSIBLE, "A", "y", "C");
+        expected.error(12, MEMBER_NOT_ACCESSIBLE, "A", "f()", "C");
+        expected.error(13, MEMBER_NOT_ACCESSIBLE, "A", "g()", "C");
+
+        compileAndCheck(folderName);
+    }
+
+    private void compileAndCheck(String folderName) throws IOException {
         Compiler c = new Compiler(actual);
         c.compileFiles(Objects.requireNonNull(new File(TEST_FOLDER, folderName).listFiles()));
         assertEquals(expected.getLog(), actual.getLog());

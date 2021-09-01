@@ -81,10 +81,11 @@ public class SymbolTable {
     }
 
     public void declareMethod(String name, Type returnType, Type[] params, Modifier m) {
+        var f = new FunctionType(returnType, name, params);
         try {
-            currentClass.addMethod(new FunctionType(returnType, name, params), m);
+            currentClass.addMethod(f, m);
         } catch (AlreadyExistsException e) {
-            analyzer.error(MessageFormat.MEMBER_ALREADY_DEFINED, name, currentClass);
+            analyzer.error(MessageFormat.METHOD_ALREADY_DEFINED, f.getFullName(), currentClass.getSymbol());
         }
     }
 
@@ -92,7 +93,7 @@ public class SymbolTable {
         try {
             currentClass.addField(name, t, m);
         } catch (AlreadyExistsException e) {
-            analyzer.error(MessageFormat.MEMBER_ALREADY_DEFINED, name, currentClass);
+            analyzer.error(MessageFormat.FIELD_ALREADY_DEFINED, name, currentClass.getSymbol());
         }
     }
 
@@ -128,7 +129,7 @@ public class SymbolTable {
         Variable v = lookUpLocalVariable(name);
         if (v == null) {
             analyzer.error(MessageFormat.NOT_DEFINED_LOCAL, name);
-            return new Variable("#undefined#", PrimitiveType.UNDEFINED, 0, null, null);
+            return new Variable("'undefined'", PrimitiveType.UNDEFINED, 0, null, null);
         }
         return v;
     }

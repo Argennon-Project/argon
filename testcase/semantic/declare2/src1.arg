@@ -1,0 +1,52 @@
+package p;
+
+class A {
+    // fields are defined after methods
+    void f(int x, A a) {
+        int w;
+        {
+            int p, q;
+            int z;
+            p = 0;
+            x = 0;
+            {
+                A aa;
+            }
+            A aa;
+        }
+        A aa;
+        A aa;
+        q = 0;
+        int p;
+        int w;
+    }
+
+    int g() {
+        int f;
+        {
+            A s;
+            int A;
+            {
+                y = 0;
+            }
+        }
+        int w;
+        A a, aa;
+    }
+
+    // method overloading:
+    void f() {}
+
+    void f(int x, A a) {}
+
+    float g() {}
+
+    int g(int yy) {}
+
+    int f();
+
+    static int s;
+    int x, y;
+    float z;
+    int s, x;
+}

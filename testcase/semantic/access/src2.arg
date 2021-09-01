@@ -1,0 +1,16 @@
+package p2;
+
+import p1.A;
+
+class C {
+    void test() {
+        A aObj;
+        aObj.x = 0;
+        aObj.y = 0;
+        aObj.z = 0;
+
+        aObj.f();
+        aObj.g();
+        aObj.h();
+    }
+}
