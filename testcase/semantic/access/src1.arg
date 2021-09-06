@@ -9,6 +9,14 @@ public class A {
     int g();
     public int h();
 
+    private static int sx;
+    static int sy;
+    static public int sz;
+
+    static private int sf();
+    static int sg();
+    public static int sh();
+
 
 
     void test() {
@@ -20,6 +28,17 @@ public class A {
         aObj.f();
         aObj.g();
         aObj.h();
+
+        x = 0;
+        sx = 0;
+
+        A.sx = 0;
+        A.sy = 0;
+        A.sz = 0;
+
+        A.sf();
+        A.sg();
+        A.sh();
     }
 }
 
@@ -33,5 +52,13 @@ class B {
         aObj.f();
         aObj.g();
         aObj.h();
+
+        A.sx = 0;
+        A.sy = 0;
+        A.sz = 0;
+
+        A.sf();
+        A.sg();
+        A.sh();
     }
 }

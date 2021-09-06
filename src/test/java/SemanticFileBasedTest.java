@@ -17,7 +17,7 @@ class SemanticFileBasedTest {
     private ErrorLogger actual, expected;
 
     @BeforeEach
-    void setUp() throws IOException {
+    void setUp() {
         expected = new ErrorLogger();
         actual = new ErrorLogger();
     }
@@ -83,6 +83,18 @@ class SemanticFileBasedTest {
         expected.error(51, FIELD_ALREADY_DEFINED, "s", "A");
         expected.error(51, FIELD_ALREADY_DEFINED, "x", "A");
 
+        expected.changeCurrentFile("src2.arg");
+        expected.error(6, FIELD_ALREADY_DEFINED, "B", "A");
+        expected.error(16, NOT_DEFINED_LOCAL, "y");
+        expected.error(17, NOT_DEFINED_IN_CLASS, "y", "A");
+        expected.error(18, MEMBER_NOT_ACCESSIBLE, "B", "x", "A");
+        expected.error(19, SHADOWING_ERROR, "sx");
+        expected.error(26, NOT_DEFINED_IN_CLASS, "x", "A");
+        expected.error(38, NOT_DEFINED_IN_OBJECT, "sx", "A");
+        expected.error(40, NOT_DEFINED_IN_OBJECT, "staticA", "B");
+        expected.error(41, TYPE_CAST_ERROR, "int", "B");
+        expected.error(42, TYPE_CAST_ERROR, "int", "A.class");
+
         compileAndCheck(folderName);
     }
 
@@ -91,14 +103,20 @@ class SemanticFileBasedTest {
     void access() throws IOException {
         String folderName = "access";
         expected.changeCurrentFile("src1.arg");
-        expected.error(29, MEMBER_NOT_ACCESSIBLE, "A", "x", "B");
-        expected.error(33, MEMBER_NOT_ACCESSIBLE, "A", "f()", "B");
+        expected.error(48, MEMBER_NOT_ACCESSIBLE, "A", "x", "B");
+        expected.error(52, MEMBER_NOT_ACCESSIBLE, "A", "f()", "B");
+        expected.error(56, MEMBER_NOT_ACCESSIBLE, "A", "sx", "B");
+        expected.error(60, MEMBER_NOT_ACCESSIBLE, "A", "sf()", "B");
 
         expected.changeCurrentFile("src2.arg");
         expected.error(8, MEMBER_NOT_ACCESSIBLE, "A", "x", "C");
         expected.error(9, MEMBER_NOT_ACCESSIBLE, "A", "y", "C");
         expected.error(12, MEMBER_NOT_ACCESSIBLE, "A", "f()", "C");
         expected.error(13, MEMBER_NOT_ACCESSIBLE, "A", "g()", "C");
+        expected.error(16, MEMBER_NOT_ACCESSIBLE, "A", "sx", "C");
+        expected.error(17, MEMBER_NOT_ACCESSIBLE, "A", "sy", "C");
+        expected.error(20, MEMBER_NOT_ACCESSIBLE, "A", "sf()", "C");
+        expected.error(21, MEMBER_NOT_ACCESSIBLE, "A", "sg()", "C");
 
         compileAndCheck(folderName);
     }

@@ -1,0 +1,44 @@
+package p2;
+
+public class A {
+    int x;
+    static int sx;
+    int B;
+
+    static B staticB;
+    B bObj;
+
+
+    int f() {
+        x = 0;
+        A.sx = 0;
+        sx = 0;
+        y = 0;
+        A.y = 0;
+        A.staticB.aObj.bObj.x = 0;
+        int sx;
+    }
+
+
+}
+
+public class B {
+    private int x = A.sx, y = A.x;
+
+    static A staticA;
+    A aObj;
+
+    int A() {
+
+    }
+
+    int f() {
+        A a;
+        a.x = 0;
+        a.sx = 0;
+        A.staticB.aObj.bObj.x = 0;
+        A.staticB.staticA = 0;
+        A.staticB = 0;
+        A = 0;
+    }
+}

@@ -12,5 +12,13 @@ class C {
         aObj.f();
         aObj.g();
         aObj.h();
+
+        A.sx = 0;
+        A.sy = 0;
+        A.sz = 0;
+
+        A.sf();
+        A.sg();
+        A.sh();
     }
 }
