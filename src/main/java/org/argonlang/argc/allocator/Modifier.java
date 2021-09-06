@@ -1,10 +1,18 @@
 package org.argonlang.argc.allocator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Modifier {
     private final List<Directive> directives = new ArrayList<>();
+
+    public Modifier() {
+    }
+
+    public Modifier(Directive... directives) {
+        Collections.addAll(this.directives, directives);
+    }
 
     public boolean is(Directive d) {
         if (d == null) return false;
@@ -14,10 +22,11 @@ public class Modifier {
         return false;
     }
 
-    public boolean add(Directive d) {
+    public Modifier add(Directive d) throws Exception {
         if (this.is(d) || this.is(d.negate()))
-            return false;
-        return directives.add(d);
+            throw new Exception("already contains the negate or the same directive");
+        directives.add(d);
+        return this;
     }
 
     @Override

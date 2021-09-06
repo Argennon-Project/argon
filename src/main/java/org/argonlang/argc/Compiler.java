@@ -110,6 +110,18 @@ class PackageBasedParserListener extends ArgonParserBaseListener {
         return t != null ? getType(t) : withContext(typeOrVoid).getType(typeOrVoid.getText(), 0);
     }
 
+    protected Modifier readMemberModifiers(List<ArgonParser.ModifierContext> ctx) {
+        Modifier result = new Modifier();
+        for (var token : ctx) {
+            try {
+                result.add(Modifier.Directive.fromSymbol(token.getText()));
+            } catch (Exception e) {
+                error(token, SemanticAnalyzer.MessageFormat.MODIFIER_ERROR, token.getText());
+            }
+        }
+        return result;
+    }
+
     PackageBasedParserListener(SemanticAnalyzer analyzer) {
         this.analyzer = analyzer;
     }
@@ -120,13 +132,18 @@ class PackageBasedParserListener extends ArgonParserBaseListener {
     }
 
     @Override
+    public void exitClassDeclaration(ArgonParser.ClassDeclarationContext ctx) {
+        withContext(ctx).exitCurrentClass();
+    }
+
+    @Override
     public void exitPackageDeclaration(ArgonParser.PackageDeclarationContext ctx) {
         if (ctx.qualifiedName() == null) return;
         withContext(ctx.qualifiedName()).setCurrentPackage(ctx.qualifiedName().getText());
     }
 }
 
-
+//TODO: use visitor instead of listener to prune the tree
 class TypeDefiner extends PackageBasedParserListener {
     TypeDefiner(SemanticAnalyzer analyzer) {
         super(analyzer);
@@ -136,7 +153,9 @@ class TypeDefiner extends PackageBasedParserListener {
     public void enterTypeDeclaration(ArgonParser.TypeDeclarationContext ctx) {
         var modifier = new Modifier();
         for (var token : ctx.classOrInterfaceModifier()) {
-            if (!modifier.add(Modifier.Directive.fromSymbol(token.getText()))) {
+            try {
+                modifier.add(Modifier.Directive.fromSymbol(token.getText()));
+            } catch (Exception e) {
                 error(token, SemanticAnalyzer.MessageFormat.MODIFIER_ERROR, token.getText());
             }
         }
@@ -145,22 +164,20 @@ class TypeDefiner extends PackageBasedParserListener {
                 modifier
         );
     }
+
+    @Override
+    public void enterInnerClassDeclaration(ArgonParser.InnerClassDeclarationContext ctx) {
+        withContext(ctx).defineInnerType(
+                ctx.classDeclaration().IDENTIFIER().getText(),
+                readMemberModifiers(ctx.modifier())
+        );
+    }
 }
 
 
 class ClassAllocator extends PackageBasedParserListener {
     ClassAllocator(SemanticAnalyzer analyzer) {
         super(analyzer);
-    }
-
-    private Modifier readMemberModifiers(List<ArgonParser.ModifierContext> ctx) {
-        Modifier result = new Modifier();
-        for (var token : ctx) {
-            if (!result.add(Modifier.Directive.fromSymbol(token.getText()))) {
-                error(token, SemanticAnalyzer.MessageFormat.MODIFIER_ERROR, token.getText());
-            }
-        }
-        return result;
     }
 
     @Override
@@ -196,7 +213,10 @@ class ClassAllocator extends PackageBasedParserListener {
         );
     }
 
-
+    @Override
+    public void enterInnerClassDeclaration(ArgonParser.InnerClassDeclarationContext ctx) {
+        super.enterInnerClassDeclaration(ctx);
+    }
 
     @Override
     public void exitFieldDeclarationFull(ArgonParser.FieldDeclarationFullContext ctx) {

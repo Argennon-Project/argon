@@ -43,11 +43,14 @@ public class SemanticAnalyzer {
         METHOD_ALREADY_DEFINED("method %s is already defined in type %s"),
         TYPE_ALREADY_DEFINED("type %s is already defined in %s"),
         NOT_DEFINED_IN_PKG("%s is not defined in package %s"),
-        NOT_DEFINED_IN_TYPE("%s is not defined in type %s"),
-        NOT_DEFINED_LOCAL("variable %s is not defined in this scope"),
+        NOT_DEFINED_IN_OBJECT("%s is not a member of an object of %s"),
+        NOT_DEFINED_IN_CLASS("%s is not a static member of %s"),
+        NOT_DEFINED_LOCAL("could not find symbol %s in this scope"),
         L_VALUE_ERROR("left side of an assignment should be a variable"),
         MODIFIER_ERROR("%s is incompatible with current modifiers"),
-        SOME_WARNING("this is warning %1$s");
+        TYPE_CAST_ERROR("%s can not be implicitly cast to %s"),
+        SOME_WARNING("this is warning %1$s"),
+        OP_NOT_APPLICABLE("%s is not applicable to %s and %s");
 
         public final String formatStr;
 

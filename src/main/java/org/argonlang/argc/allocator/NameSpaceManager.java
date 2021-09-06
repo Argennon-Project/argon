@@ -16,7 +16,7 @@ public class NameSpaceManager {
     }
 
     public void addTo(String nameSpace, Type t, String alias) throws AlreadyExistsException {
-        Type previous = nameSpaces.putIfAbsent(nameSpace + "." + alias, t);
+        Type previous = nameSpaces.put(nameSpace + "." + alias, t);
         if (previous != null) {
             throw new AlreadyExistsException(nameSpace + "." + alias + " already exists");
         }

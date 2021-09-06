@@ -1,14 +1,26 @@
-package otherapp;
+package p2;
 
-import testapp.MyClass as newType;
+class Test {
+    mypack.MyClass c;
 
-class Other {
-    public int x, y;
-    private newType t;
-    public void f(int[][] ar) {
-        final int x;
-        x = t.fff.cc;
-        ar.lengt();
-        t.find(0.3);
+    public static class Inner { int in;}
+
+    int g() {
+        int xx, yy;
+        float z;
+        y = 0;
+        Test.Inner t;
+        xx = 10.2 + 10;
+        t.in = 0;
+        t.x = 0;
+        c.x = 0;
+        c.V = 0;
+        mypack.V =0;
+        mypack.MyClass = 0;
+        mypack.MyClass.V = 0;
+        mypack.MyClass.x = 0;
+
     }
+
+    int y;
 }

@@ -41,7 +41,7 @@ class A {
 
     float g() {}
 
-    int g(int yy) {}
+    int g(int yy) {s = 0;}
 
     int f();
 

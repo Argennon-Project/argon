@@ -21,7 +21,9 @@ public abstract class Type {
     }
 
     public boolean castsTo(Type t) {
-        return this == t || superType.castsTo(t);
+        if (this == PrimitiveType.UNDEFINED || t == PrimitiveType.UNDEFINED) return true;
+        if (this == t) return true;
+        return superType != null && superType.castsTo(t);
     }
 
     public String getSymbol() {

@@ -3,9 +3,9 @@ package org.argonlang.argc;
 
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
 import org.argonlang.argc.allocator.*;
-import org.argonlang.argc.parser.ArgonLexer;
 import org.argonlang.argc.parser.ArgonParser;
 import org.argonlang.argc.semantic.SemanticAnalyzer;
+import org.argonlang.argc.semantic.SemanticAnalyzer.MessageFormat;
 
 class CodeGenerator extends PackageBasedParserListener {
     private ParseTreeProperty<Type> types = new ParseTreeProperty<>();
@@ -31,7 +31,11 @@ class CodeGenerator extends PackageBasedParserListener {
     public void exitLocalVariableDeclaration(ArgonParser.LocalVariableDeclarationContext ctx) {
         Modifier m = new Modifier();
         for (var d : ctx.variableModifier()) {
-            m.add(Modifier.Directive.fromSymbol(d.getText()));
+            try {
+                m.add(Modifier.Directive.fromSymbol(d.getText()));
+            } catch (Exception e) {
+                error(d, MessageFormat.MODIFIER_ERROR, d.getText());
+            }
         }
         Type t = getType(ctx.typeType());
         for (var declarator : ctx.variableDeclarators().variableDeclarator()) {
@@ -75,8 +79,10 @@ class CodeGenerator extends PackageBasedParserListener {
         var id = ctx.IDENTIFIER();
         var parent = ctx.getParent();
         if (id != null) {
-            Variable v = withContext(ctx).getLocalVariable(id.getText());
-            types.put(parent, v.getType());
+            Variable v = withContext(ctx).lookUpLocalVariable(id.getText());
+            // When v is null we save the type as null. This indicates that The parent should infer the type.
+            if (v == null) types.put(parent, null);
+            else types.put(parent, v.getType());
             return;
         }
         var literal = ctx.literal();
@@ -91,29 +97,59 @@ class CodeGenerator extends PackageBasedParserListener {
     }
 
     @Override
-    public void exitExpression(ArgonParser.ExpressionContext ctx) {
-        if (ctx.bop != null) {
-            var left = ctx.expression(0);
-            switch (ctx.bop.getType()) {
-                case ArgonLexer.DOT:
-                    String identifier = "";
-                    if (ctx.methodCall() != null) {
-                        FunctionType funcType = (FunctionType) types.get(ctx.methodCall());
-                        identifier = funcType.getFullName();
-                    } else if (ctx.IDENTIFIER() != null) {
-                        identifier = ctx.IDENTIFIER().getText();
-                    }
-                    Variable v = withContext(ctx).getObjectMember(types.get(left), identifier);
-                    types.put(ctx, v.getType());
-                    break;
-            }
+    public void exitDotExpr(ArgonParser.DotExprContext ctx) {
+        var left = ctx.expression();
+        String identifier = "";
+        if (ctx.methodCall() != null) {
+            FunctionType funcType = (FunctionType) types.get(ctx.methodCall());
+            identifier = funcType.getFullName();
+        } else if (ctx.IDENTIFIER() != null) {
+            identifier = ctx.IDENTIFIER().getText();
         }
-        //todo
-        if (ctx.bop != null && ctx.bop.getType() == ArgonLexer.ASSIGN) {
-            var leftSide = ctx.expression(0);
-            if (leftSide.bop != null && leftSide.bop.getType() != ArgonLexer.DOT) {
-                error(leftSide, SemanticAnalyzer.MessageFormat.L_VALUE_ERROR);
+        if (types.get(left) == null) {
+            Variable v = withContext(ctx).lookUpLocalVariable(ctx.getText());
+            types.put(ctx, v == null ? null : v.getType());
+        } else {
+            Type t = types.get(left);
+            Variable v;
+            if (t instanceof StaticType) {
+                v = withContext(ctx).getStaticMember(((StaticType) t).getType(), identifier);
+            } else {
+                v = withContext(ctx).getObjectMember(t, identifier);
             }
+            types.put(ctx, v.getType());
+        }
+    }
+
+    @Override
+    public void exitAssignExpr(ArgonParser.AssignExprContext ctx) {
+        Type left = getType(ctx.expression(0));
+        Type right = getType(ctx.expression(1));
+        if (!right.castsTo(left)) {
+            error(ctx, MessageFormat.TYPE_CAST_ERROR, right.getSymbol(), left.getSymbol());
+        }
+        types.put(ctx, left);
+    }
+
+    private Type getType(ArgonParser.ExpressionContext expr) {
+        Type result = types.get(expr);
+        if (result == null) {
+            error(expr, MessageFormat.NOT_DEFINED_LOCAL, expr.getText(), "");
+            return PrimitiveType.UNDEFINED;
+        }
+        return result;
+    }
+
+    @Override
+    public void exitAddExpr(ArgonParser.AddExprContext ctx) {
+        Type left = getType(ctx.expression(0));
+        Type right = getType(ctx.expression(1));
+        if ((left.castsTo(PrimitiveType.INTEGER) && right.castsTo(PrimitiveType.INTEGER)) ||
+                (left.castsTo(PrimitiveType.FLOAT) && right.castsTo(PrimitiveType.FLOAT))) {
+            types.put(ctx, left);
+        } else {
+            error(ctx, MessageFormat.OP_NOT_APPLICABLE, ctx.bop.getText(), left.getSymbol(), right.getSymbol());
+            types.put(ctx, PrimitiveType.UNDEFINED);
         }
     }
 }

@@ -464,7 +464,7 @@ methodCall
     ;
 
 expression
-    : primary
+    : primary                                                       # primaryExpr
     | expression bop='.'
       ( IDENTIFIER
       | methodCall
@@ -472,35 +472,35 @@ expression
       | NEW nonWildcardTypeArguments? innerCreator
       | SUPER superSuffix
       | explicitGenericInvocation
-      )
-    | expression '[' expression ']'
-    | methodCall
-    | NEW creator
-    | '(' annotation* typeType ('&' typeType)* ')' expression
-    | expression postfix=('++' | '--')
-    | prefix=('+'|'-'|'++'|'--') expression
-    | prefix=('~'|'!') expression
-    | expression bop=('*'|'/'|'%') expression
-    | expression bop=('+'|'-') expression
-    | expression ('<' '<' | '>' '>' '>' | '>' '>') expression
-    | expression bop=('<=' | '>=' | '>' | '<') expression
-    | expression bop=INSTANCEOF typeType
-    | expression bop=('==' | '!=') expression
-    | expression bop='&' expression
-    | expression bop='^' expression
-    | expression bop='|' expression
-    | expression bop='&&' expression
-    | expression bop='||' expression
-    | <assoc=right> expression bop='?' expression ':' expression
+      )                                                             # dotExpr
+    | expression '[' expression ']'                                 # arrayExpr
+    | methodCall                                                    # methodCallExpr
+    | NEW creator   # tmpExpr
+    | '(' annotation* typeType ('&' typeType)* ')' expression       # tmpExpr
+    | expression postfix=('++' | '--')   # tmpExpr
+    | prefix=('+'|'-'|'++'|'--') expression   # tmpExpr
+    | prefix=('~'|'!') expression   # tmpExpr
+    | expression bop=('*'|'/'|'%') expression                       # mulExpr
+    | expression bop=('+'|'-') expression                           # addExpr
+    | expression ('<' '<' | '>' '>' '>' | '>' '>') expression       # tmpExpr
+    | expression bop=('<=' | '>=' | '>' | '<') expression           # cmpExpr
+    | expression bop=INSTANCEOF typeType   # tmpExpr
+    | expression bop=('==' | '!=') expression   # tmpExpr
+    | expression bop='&' expression   # tmpExpr
+    | expression bop='^' expression   # tmpExpr
+    | expression bop='|' expression   # tmpExpr
+    | expression bop='&&' expression   # tmpExpr
+    | expression bop='||' expression   # tmpExpr
+    | <assoc=right> expression bop='?' expression ':' expression    # tmpExpr
     | <assoc=right> expression
       bop=('=' | '+=' | '-=' | '*=' | '/=' | '&=' | '|=' | '^=' | '>>=' | '>>>=' | '<<=' | '%=')
-      expression
-    | lambdaExpression // Java8
+      expression                                                    # assignExpr
+    | lambdaExpression  # tmpExpr
 
     // Java 8 methodReference
-    | expression '::' typeArguments? IDENTIFIER
-    | typeType '::' (typeArguments? IDENTIFIER | NEW)
-    | classType '::' typeArguments? NEW
+    | expression '::' typeArguments? IDENTIFIER   # tmpExpr
+    | typeType '::' (typeArguments? IDENTIFIER | NEW)   # tmpExpr
+    | classType '::' typeArguments? NEW   # tmpExpr
     ;
 
 // Java8

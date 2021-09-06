@@ -1,29 +1,12 @@
-package testapp;
-
-import otherapp.Other;
-
-public class Main {
-    private float feild;
-    private MyClass cc;
-
-    public static void main(Other b, String s) {
-        double x;
-        x = cc.fff.cc.fff.c + 3;
-        final int yfun, z;
-        x = (h + y) + z * w.j;
-        {
-            Type w;
-        }
-
-    }
-
-
-
-}
+package mypack;
 
 public class MyClass {
-    public Main fff;
-    public int add(int x, MyClass c) {}
+    public static int V;
+    public int x;
+}
 
-    public boolean find(MyClass x, float y) {}
+class Test {
+    int f() {
+        MyClass.V = 0;
+    }
 }

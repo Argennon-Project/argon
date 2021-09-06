@@ -29,18 +29,15 @@ public class ClassType extends Type {
         return parentPackage;
     }
 
+    public ClassType getContainerClass() {
+        return containerClass;
+    }
+
     public boolean isAccessibleFrom(String packageName) {
         return modifier.is(PUBLIC) || (parentPackage.equals(packageName) && !modifier.is(PRIVATE));
     }
 
-    private void checkIfExists(String name) throws AlreadyExistsException {
-        if (getVariable(name) != null) {
-            throw new AlreadyExistsException(name + " is already defined in type " + symbol);
-        }
-    }
-
-    public void addField(String name, Type t, Modifier m) throws AlreadyExistsException {
-        checkIfExists(name);
+    public void addField(String name, Type t, Modifier m) {
         Variable v = new Variable(name, t, 0, this, m);
         if (v.modifier.is(STATIC)) {
             staticMembers.addField(v);
@@ -50,8 +47,7 @@ public class ClassType extends Type {
 
     }
 
-    public void addMethod(FunctionType type, Modifier m) throws AlreadyExistsException {
-        checkIfExists(type.getFullName());
+    public void addMethod(FunctionType type, Modifier m) {
         Variable v = new Variable(
                 type.getFullName(),
                 type,

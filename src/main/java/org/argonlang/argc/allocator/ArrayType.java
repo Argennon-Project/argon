@@ -7,14 +7,12 @@ public class ArrayType extends Type {
     {
         methods = new MemberContainer();
         var lengthMethodType = new FunctionType(PrimitiveType.INTEGER, "length", new Type[0]);
-        var modifier = new Modifier();
-        modifier.add(Modifier.Directive.PUBLIC);
         methods.addMethod(new Variable(
                 lengthMethodType.getFullName(),
                 lengthMethodType,
                 -1,
                 this,
-                modifier
+                new Modifier(Modifier.Directive.PUBLIC)
         ));
     }
 

@@ -37,14 +37,14 @@ class SemanticFileBasedTest {
     void advancedImport() throws IOException {
         String folderName = "import2";
         expected.changeCurrentFile("src1.arg");
-        expected.error(11, NOT_DEFINED_IN_TYPE, "z", "Test");
+        expected.error(11, NOT_DEFINED_IN_OBJECT, "z", "Test");
 
         expected.changeCurrentFile("src2.arg");
         expected.error(3, NOT_ACCESSIBLE_ERROR, "p1.A", "p2");
         expected.error(5, IMPORT_EXISTS, "C", "p1.C");
         expected.error(9, NOT_ACCESSIBLE_ERROR, "A", "p2");
-        expected.error(14, NOT_DEFINED_IN_TYPE, "w", "D");
-        expected.error(15, NOT_DEFINED_IN_TYPE, "y", "B");
+        expected.error(14, NOT_DEFINED_IN_OBJECT, "w", "D");
+        expected.error(15, NOT_DEFINED_IN_OBJECT, "y", "B");
 
         compileAndCheck(folderName);
     }
@@ -74,6 +74,7 @@ class SemanticFileBasedTest {
         expected.error(21, SHADOWING_ERROR, "w");
         expected.error(18, SHADOWING_ERROR, "aa");
         expected.error(27, SHADOWING_ERROR, "s");
+        expected.error(28, SHADOWING_ERROR, "A");
         expected.error(40, SHADOWING_ERROR, "x");
         expected.error(19, NOT_DEFINED_LOCAL, "q");
         expected.error(40, METHOD_ALREADY_DEFINED, "f(int,A)", "A");

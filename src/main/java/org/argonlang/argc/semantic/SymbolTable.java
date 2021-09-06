@@ -2,6 +2,8 @@ package org.argonlang.argc.semantic;
 
 import org.argonlang.argc.allocator.*;
 
+import static org.argonlang.argc.allocator.Modifier.Directive.PUBLIC;
+import static org.argonlang.argc.allocator.Modifier.Directive.STATIC;
 import static org.argonlang.argc.semantic.SemanticAnalyzer.MessageFormat;
 
 public class SymbolTable {
@@ -31,7 +33,6 @@ public class SymbolTable {
         localScope.closeScope();
     }
 
-
     /**
      * Searches the namespace for a type with the given `name` or alias. First it considers `name`
      * as a fully qualified name, if no type is found the name is considered as a name inside the current
@@ -55,7 +56,11 @@ public class SymbolTable {
         return t;
     }
 
-    private Type getType(String name) {
+    public boolean typeExists(String name) {
+        return nameSpaceManager.getFrom(currentPackage, name) != null;
+    }
+
+    public Type getType(String name) {
         return getType(name, 0);
     }
 
@@ -64,7 +69,15 @@ public class SymbolTable {
     }
 
     public void setCurrentClass(String className) {
-        currentClass = (ClassType) getType(className);
+        if (currentClass == null) {
+            currentClass = (ClassType) getType(className);
+        } else {
+            currentClass = (ClassType) getType(currentClass.getSymbol() + "." + className);
+        }
+    }
+
+    public void exitCurrentClass() {
+        currentClass = currentClass.getContainerClass();
     }
 
     public void importType(String fullyQualifiedName, String alias) {
@@ -76,25 +89,33 @@ public class SymbolTable {
         }
     }
 
-    public void defineInnerType(String typeName) {
-
-    }
 
     public void declareMethod(String name, Type returnType, Type[] params, Modifier m) {
         var f = new FunctionType(returnType, name, params);
-        try {
-            currentClass.addMethod(f, m);
-        } catch (AlreadyExistsException e) {
+        if (lookUpLocalVariable(f.getFullName()) != null) {
             analyzer.error(MessageFormat.METHOD_ALREADY_DEFINED, f.getFullName(), currentClass.getSymbol());
+            return;
         }
+        currentClass.addMethod(f, m);
     }
 
     public void declareField(String name, Type t, Modifier m) {
-        try {
-            currentClass.addField(name, t, m);
-        } catch (AlreadyExistsException e) {
+        if (lookUpLocalVariable(name) != null) {
             analyzer.error(MessageFormat.FIELD_ALREADY_DEFINED, name, currentClass.getSymbol());
+            return;
         }
+        currentClass.addField(name, t, m);
+    }
+
+    public void defineInnerType(String typeName, Modifier m) {
+        String fullName = currentClass.getSymbol() + "." + typeName;
+        ClassType newClass = new ClassType(fullName, currentPackage, currentClass, m);
+        try {
+            nameSpaceManager.addTo(currentPackage, newClass);
+        } catch (AlreadyExistsException e) {
+            analyzer.error(MessageFormat.TYPE_ALREADY_DEFINED, fullName, currentPackage);
+        }
+        declareField(typeName, new StaticType(newClass), m);
     }
 
     public void declareLocalVariable(String name, Type t, Modifier m) {
@@ -105,24 +126,31 @@ public class SymbolTable {
     }
 
     public Variable getObjectMember(Type owner, String variableName) {
-        return getMember(owner, variableName, true);
-    }
-
-    public Variable getClassMember(Type owner, String variableName) {
-        return getMember(owner, variableName, false);
-    }
-
-    private Variable getMember(Type owner, String variableName, boolean fromObject) {
-        Variable v = (fromObject) ? owner.getObjectVariable(variableName) : owner.getStaticVariable(variableName);
-        if (v == null) {
-            analyzer.error(MessageFormat.NOT_DEFINED_IN_TYPE, variableName, owner.getSymbol());
-            return new Variable(variableName, PrimitiveType.UNDEFINED, 0, owner, new Modifier());
+        Variable result = owner.getObjectVariable(variableName);
+        if (result == null) {
+            analyzer.error(MessageFormat.NOT_DEFINED_IN_OBJECT, variableName, owner.getSymbol());
+            return new Variable(variableName, PrimitiveType.UNDEFINED,
+                    0, owner, new Modifier(PUBLIC));
         }
-        if (!v.isAccessibleFrom(currentClass)) {
+        if (!result.isAccessibleFrom(currentClass)) {
             analyzer.error(MessageFormat.MEMBER_NOT_ACCESSIBLE,
                     owner.getSymbol(), variableName, currentClass.getSymbol());
         }
-        return v;
+        return result;
+    }
+
+    public Variable getStaticMember(Type owner, String variableName) {
+        Variable result = owner.getStaticVariable(variableName);
+        if (result == null) {
+            analyzer.error(MessageFormat.NOT_DEFINED_IN_CLASS, variableName, owner.getSymbol());
+            return new Variable(variableName, PrimitiveType.UNDEFINED,
+                    0, owner, new Modifier(PUBLIC, STATIC));
+        }
+        if (!result.isAccessibleFrom(currentClass)) {
+            analyzer.error(MessageFormat.MEMBER_NOT_ACCESSIBLE, owner.getSymbol(), variableName, currentClass.getSymbol());
+        }
+        return result;
+
     }
 
     public Variable getLocalVariable(String name) {
@@ -134,9 +162,15 @@ public class SymbolTable {
         return v;
     }
 
-    private Variable lookUpLocalVariable(String name) {
+    public Variable lookUpLocalVariable(String name) {
         Variable v = localScope.getVariable(name);
-        return v != null ? v : currentClass.getVariable(name);
+        if (v != null) return v;
+
+        v = currentClass.getVariable(name);
+        if (v != null) return v;
+
+        Type t = nameSpaceManager.getFrom(currentPackage, name);
+        return t == null ? null : new Variable(t.getSymbol(), new StaticType(t), -1, null, null);
     }
 
     @Override

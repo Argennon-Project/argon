@@ -904,35 +904,175 @@ public interface ArgonParserListener extends ParseTreeListener {
 	 */
 	void exitExpressionList(ArgonParser.ExpressionListContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ArgonParser#methodCall}.
-	 * @param ctx the parse tree
-	 */
-	void enterMethodCall(ArgonParser.MethodCallContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgonParser#methodCall}.
-	 * @param ctx the parse tree
-	 */
-	void exitMethodCall(ArgonParser.MethodCallContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ArgonParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpression(ArgonParser.ExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgonParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpression(ArgonParser.ExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ArgonParser#lambdaExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterLambdaExpression(ArgonParser.LambdaExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgonParser#lambdaExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitLambdaExpression(ArgonParser.LambdaExpressionContext ctx);
+     * Enter a parse tree produced by {@link ArgonParser#methodCall}.
+     * @param ctx the parse tree
+     */
+    void enterMethodCall(ArgonParser.MethodCallContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link ArgonParser#methodCall}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitMethodCall(ArgonParser.MethodCallContext ctx);
+
+    /**
+     * Enter a parse tree produced by the {@code methodCallExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterMethodCallExpr(ArgonParser.MethodCallExprContext ctx);
+
+    /**
+     * Exit a parse tree produced by the {@code methodCallExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitMethodCallExpr(ArgonParser.MethodCallExprContext ctx);
+
+    /**
+     * Enter a parse tree produced by the {@code tmpExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterTmpExpr(ArgonParser.TmpExprContext ctx);
+
+    /**
+     * Exit a parse tree produced by the {@code tmpExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitTmpExpr(ArgonParser.TmpExprContext ctx);
+
+    /**
+     * Enter a parse tree produced by the {@code dotExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterDotExpr(ArgonParser.DotExprContext ctx);
+
+    /**
+     * Exit a parse tree produced by the {@code dotExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitDotExpr(ArgonParser.DotExprContext ctx);
+
+    /**
+     * Enter a parse tree produced by the {@code primaryExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterPrimaryExpr(ArgonParser.PrimaryExprContext ctx);
+
+    /**
+     * Exit a parse tree produced by the {@code primaryExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitPrimaryExpr(ArgonParser.PrimaryExprContext ctx);
+
+    /**
+     * Enter a parse tree produced by the {@code arrayExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterArrayExpr(ArgonParser.ArrayExprContext ctx);
+
+    /**
+     * Exit a parse tree produced by the {@code arrayExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitArrayExpr(ArgonParser.ArrayExprContext ctx);
+
+    /**
+     * Enter a parse tree produced by the {@code addExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterAddExpr(ArgonParser.AddExprContext ctx);
+
+    /**
+     * Exit a parse tree produced by the {@code addExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitAddExpr(ArgonParser.AddExprContext ctx);
+
+    /**
+     * Enter a parse tree produced by the {@code mulExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterMulExpr(ArgonParser.MulExprContext ctx);
+
+    /**
+     * Exit a parse tree produced by the {@code mulExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitMulExpr(ArgonParser.MulExprContext ctx);
+
+    /**
+     * Enter a parse tree produced by the {@code assignExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterAssignExpr(ArgonParser.AssignExprContext ctx);
+
+    /**
+     * Exit a parse tree produced by the {@code assignExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitAssignExpr(ArgonParser.AssignExprContext ctx);
+
+    /**
+     * Enter a parse tree produced by the {@code cmpExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterCmpExpr(ArgonParser.CmpExprContext ctx);
+
+    /**
+     * Exit a parse tree produced by the {@code cmpExpr}
+     * labeled alternative in {@link ArgonParser#expression}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitCmpExpr(ArgonParser.CmpExprContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link ArgonParser#lambdaExpression}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterLambdaExpression(ArgonParser.LambdaExpressionContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link ArgonParser#lambdaExpression}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitLambdaExpression(ArgonParser.LambdaExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ArgonParser#lambdaParameters}.
 	 * @param ctx the parse tree
