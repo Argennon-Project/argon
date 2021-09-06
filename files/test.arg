@@ -2,11 +2,14 @@ package mypack;
 
 public class MyClass {
     public static int V;
-    public int x;
+    public int[] x;
 }
 
 class Test {
     int f() {
-        MyClass.V = 0;
+        MyClass.V;
+        int[] x;
+        float y;
+        y = x[2];
     }
 }

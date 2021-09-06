@@ -95,6 +95,14 @@ class SemanticFileBasedTest {
         expected.error(41, TYPE_CAST_ERROR, "int", "B");
         expected.error(42, TYPE_CAST_ERROR, "int", "A.class");
 
+        expected.changeCurrentFile("array.arg");
+        expected.error(8, TYPE_CAST_ERROR, "int", "float");
+        expected.error(9, INDEX_TYPE_ERROR);
+        expected.error(9, TYPE_CAST_ERROR, "int", "float");
+        expected.error(13, TYPE_CAST_ERROR, "float", "int");
+        expected.error(14, INDEX_TYPE_ERROR, "int", "float");
+        expected.error(20, TYPE_CAST_ERROR, "A", "float");
+
         compileAndCheck(folderName);
     }
 

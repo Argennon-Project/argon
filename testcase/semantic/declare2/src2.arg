@@ -41,4 +41,9 @@ public class B {
         A.staticB = 0;
         A = 0;
     }
+
+    int[] arr;
+    A[] objArr;
+    int i;
+    float f;
 }

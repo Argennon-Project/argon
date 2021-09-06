@@ -68,7 +68,7 @@ class CodeGenerator extends PackageBasedParserListener {
             var paramExprList = ctx.expressionList().expression();
             paramTypes = new Type[paramExprList.size()];
             for (int i = 0; i < paramTypes.length; i++) {
-                paramTypes[i] = types.get(paramExprList.get(i));
+                paramTypes[i] = getType(paramExprList.get(i));
             }
         }
         types.put(ctx, new FunctionType(PrimitiveType.VOID, ctx.IDENTIFIER().getText(), paramTypes));
@@ -149,6 +149,22 @@ class CodeGenerator extends PackageBasedParserListener {
             types.put(ctx, left);
         } else {
             error(ctx, MessageFormat.OP_NOT_APPLICABLE, ctx.bop.getText(), left.getSymbol(), right.getSymbol());
+            types.put(ctx, PrimitiveType.UNDEFINED);
+        }
+    }
+
+    @Override
+    public void exitArrayExpr(ArgonParser.ArrayExprContext ctx) {
+        var array = ctx.expression(0);
+        var index = ctx.expression(1);
+        if (!getType(index).castsTo(PrimitiveType.INTEGER)) {
+            error(index, MessageFormat.INDEX_TYPE_ERROR);
+        }
+        Type type = getType(array);
+        if (type instanceof ArrayType) {
+            types.put(ctx, ((ArrayType) type).typeOfElements());
+        } else {
+            error(array, MessageFormat.NOT_ARRAY_ERROR, type.getSymbol());
             types.put(ctx, PrimitiveType.UNDEFINED);
         }
     }

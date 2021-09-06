@@ -1064,16 +1064,22 @@ public class ArgonParserBaseListener implements ArgonParserListener {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitExpressionList(ArgonParser.ExpressionListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterMethodCall(ArgonParser.MethodCallContext ctx) { }
-	/**
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override
+    public void exitExpressionList(ArgonParser.ExpressionListContext ctx) {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override
+    public void enterMethodCall(ArgonParser.MethodCallContext ctx) {
+    }
+
+    /**
      * {@inheritDoc}
      *
      * <p>The default implementation does nothing.</p>
@@ -1252,16 +1258,20 @@ public class ArgonParserBaseListener implements ArgonParserListener {
     @Override
     public void enterLambdaExpression(ArgonParser.LambdaExpressionContext ctx) {
     }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLambdaExpression(ArgonParser.LambdaExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override
+    public void exitLambdaExpression(ArgonParser.LambdaExpressionContext ctx) {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void enterLambdaParameters(ArgonParser.LambdaParametersContext ctx) { }
 	/**

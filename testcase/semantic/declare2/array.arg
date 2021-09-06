@@ -1,0 +1,23 @@
+package p2;
+
+class C {
+    int i;
+    B bObj;
+    int f() {
+        float[] fArr;
+        fArr[2] = 0;
+        fArr[2.1] = 0;
+        fArr[0] = 0.1;
+
+        bObj.arr[bObj.i] = 0;
+        bObj.arr[A.sx] = 0.2;
+        fArr[A.staticB.f] = 0.5;
+        fArr[A.staticB.i] = 0.5;
+        fArr[2 + 3] = 0.5 + 0.6;
+
+        float x;
+        A a;
+        x = A.staticB.objArr[bObj.arr[i]];
+        a = A.staticB.objArr[bObj.arr[i]];
+    }
+}

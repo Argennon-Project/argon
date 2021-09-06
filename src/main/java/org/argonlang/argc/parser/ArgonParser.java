@@ -6893,12 +6893,11 @@ public class ArgonParser extends Parser {
 				setState(1132);
 				match(RPAREN);
 				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			break;
+				default:
+					throw new NoViableAltException(this);
 			}
-		}
-		catch (RecognitionException re) {
+		} catch (RecognitionException re) {
 			_localctx.exception = re;
 			_errHandler.reportError(this, re);
 			_errHandler.recover(this, re);
@@ -6939,13 +6938,11 @@ public class ArgonParser extends Parser {
 		public void enterRule(ParseTreeListener listener) {
 			if (listener instanceof ArgonParserListener) ((ArgonParserListener) listener).enterMethodCallExpr(this);
 		}
-
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if (listener instanceof ArgonParserListener) ((ArgonParserListener) listener).exitMethodCallExpr(this);
 		}
 	}
-
 	public static class TmpExprContext extends ExpressionContext {
 		public Token prefix;
 		public Token bop;
@@ -6966,70 +6963,55 @@ public class ArgonParser extends Parser {
 		public List<TypeTypeContext> typeType() {
 			return getRuleContexts(TypeTypeContext.class);
 		}
-
 		public TypeTypeContext typeType(int i) {
 			return getRuleContext(TypeTypeContext.class,i);
 		}
-
 		public TerminalNode RPAREN() { return getToken(ArgonParser.RPAREN, 0); }
-
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
 		}
-
 		public ExpressionContext expression(int i) {
 			return getRuleContext(ExpressionContext.class,i);
 		}
-
 		public List<AnnotationContext> annotation() {
 			return getRuleContexts(AnnotationContext.class);
 		}
-
 		public AnnotationContext annotation(int i) {
 			return getRuleContext(AnnotationContext.class,i);
 		}
-
 		public List<TerminalNode> BITAND() { return getTokens(ArgonParser.BITAND); }
-
 		public TerminalNode BITAND(int i) {
 			return getToken(ArgonParser.BITAND, i);
 		}
-
 		public TerminalNode ADD() { return getToken(ArgonParser.ADD, 0); }
-
 		public TerminalNode SUB() { return getToken(ArgonParser.SUB, 0); }
-
 		public TerminalNode INC() { return getToken(ArgonParser.INC, 0); }
-
 		public TerminalNode DEC() { return getToken(ArgonParser.DEC, 0); }
-
 		public TerminalNode TILDE() { return getToken(ArgonParser.TILDE, 0); }
-
 		public TerminalNode BANG() { return getToken(ArgonParser.BANG, 0); }
-
 		public LambdaExpressionContext lambdaExpression() {
 			return getRuleContext(LambdaExpressionContext.class,0);
 		}
-
 		public TerminalNode COLONCOLON() { return getToken(ArgonParser.COLONCOLON, 0); }
-
 		public TerminalNode IDENTIFIER() { return getToken(ArgonParser.IDENTIFIER, 0); }
-
 		public TypeArgumentsContext typeArguments() {
 			return getRuleContext(TypeArgumentsContext.class,0);
 		}
-
 		public ClassTypeContext classType() {
-			return getRuleContext(ClassTypeContext.class,0);
+			return getRuleContext(ClassTypeContext.class, 0);
 		}
 
-		public List<TerminalNode> LT() { return getTokens(ArgonParser.LT); }
+		public List<TerminalNode> LT() {
+			return getTokens(ArgonParser.LT);
+		}
 
 		public TerminalNode LT(int i) {
 			return getToken(ArgonParser.LT, i);
 		}
 
-		public List<TerminalNode> GT() { return getTokens(ArgonParser.GT); }
+		public List<TerminalNode> GT() {
+			return getTokens(ArgonParser.GT);
+		}
 
 		public TerminalNode GT(int i) {
 			return getToken(ArgonParser.GT, i);
@@ -7141,13 +7123,11 @@ public class ArgonParser extends Parser {
 		public void enterRule(ParseTreeListener listener) {
 			if (listener instanceof ArgonParserListener) ((ArgonParserListener) listener).enterDotExpr(this);
 		}
-
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if (listener instanceof ArgonParserListener) ((ArgonParserListener) listener).exitDotExpr(this);
 		}
 	}
-
 	public static class PrimaryExprContext extends ExpressionContext {
 		public PrimaryContext primary() {
 			return getRuleContext(PrimaryContext.class, 0);
@@ -7161,7 +7141,6 @@ public class ArgonParser extends Parser {
 		public void enterRule(ParseTreeListener listener) {
 			if (listener instanceof ArgonParserListener) ((ArgonParserListener) listener).enterPrimaryExpr(this);
 		}
-
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if (listener instanceof ArgonParserListener) ((ArgonParserListener) listener).exitPrimaryExpr(this);
@@ -7407,54 +7386,54 @@ public class ArgonParser extends Parser {
 			setState(1179);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,145,_ctx) ) {
-			case 1: {
-				_localctx = new PrimaryExprContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
+				case 1: {
+					_localctx = new PrimaryExprContext(_localctx);
+					_ctx = _localctx;
+					_prevctx = _localctx;
 
-				setState(1136);
-				primary();
-			}
+					setState(1136);
+					primary();
+				}
 				break;
-			case 2: {
-				_localctx = new MethodCallExprContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(1137);
-				methodCall();
-			}
+				case 2: {
+					_localctx = new MethodCallExprContext(_localctx);
+					_ctx = _localctx;
+					_prevctx = _localctx;
+					setState(1137);
+					methodCall();
+				}
 				break;
-			case 3: {
-				_localctx = new TmpExprContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(1138);
-				match(NEW);
-				setState(1139);
-				creator();
-			}
+				case 3: {
+					_localctx = new TmpExprContext(_localctx);
+					_ctx = _localctx;
+					_prevctx = _localctx;
+					setState(1138);
+					match(NEW);
+					setState(1139);
+					creator();
+				}
 				break;
-			case 4: {
-				_localctx = new TmpExprContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(1140);
-				match(LPAREN);
-				setState(1144);
-				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input, 140, _ctx);
-				while (_alt != 2 && _alt != org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER) {
-					if (_alt == 1) {
-						{
-							{
-								setState(1141);
-						annotation();
-						}
-						} 
-					}
-					setState(1146);
+				case 4: {
+					_localctx = new TmpExprContext(_localctx);
+					_ctx = _localctx;
+					_prevctx = _localctx;
+					setState(1140);
+					match(LPAREN);
+					setState(1144);
 					_errHandler.sync(this);
-					_alt = getInterpreter().adaptivePredict(_input,140,_ctx);
+					_alt = getInterpreter().adaptivePredict(_input, 140, _ctx);
+					while (_alt != 2 && _alt != org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER) {
+						if (_alt == 1) {
+							{
+								{
+									setState(1141);
+									annotation();
+								}
+							}
+						}
+						setState(1146);
+						_errHandler.sync(this);
+						_alt = getInterpreter().adaptivePredict(_input, 140, _ctx);
 				}
 				setState(1147);
 				typeType();
@@ -7474,111 +7453,110 @@ public class ArgonParser extends Parser {
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(1155);
-				match(RPAREN);
-				setState(1156);
-				expression(21);
+					setState(1155);
+					match(RPAREN);
+					setState(1156);
+					expression(21);
 				}
 				break;
-			case 5: {
-				_localctx = new TmpExprContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(1158);
-				((TmpExprContext) _localctx).prefix = _input.LT(1);
-				_la = _input.LA(1);
-				if (!(((((_la - 85)) & ~0x3f) == 0 && ((1L << (_la - 85)) & ((1L << (INC - 85)) | (1L << (DEC - 85)) | (1L << (ADD - 85)) | (1L << (SUB - 85)))) != 0))) {
-					((TmpExprContext) _localctx).prefix = (Token) _errHandler.recoverInline(this);
-				} else {
-					if (_input.LA(1) == Token.EOF) matchedEOF = true;
-					_errHandler.reportMatch(this);
-					consume();
-				}
-				setState(1159);
-				expression(19);
-				}
-				break;
-			case 6: {
-				_localctx = new TmpExprContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(1160);
-				((TmpExprContext) _localctx).prefix = _input.LT(1);
-				_la = _input.LA(1);
-				if (!(_la == BANG || _la == TILDE)) {
-					((TmpExprContext) _localctx).prefix = (Token) _errHandler.recoverInline(this);
-				} else {
-					if (_input.LA(1) == Token.EOF) matchedEOF = true;
-					_errHandler.reportMatch(this);
-					consume();
-				}
-				setState(1161);
-				expression(18);
-				}
-				break;
-			case 7: {
-				_localctx = new TmpExprContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(1162);
-				lambdaExpression();
-			}
-				break;
-			case 8: {
-				_localctx = new TmpExprContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(1163);
-				typeType();
-				setState(1164);
-				match(COLONCOLON);
-				setState(1170);
-				_errHandler.sync(this);
-				switch (_input.LA(1)) {
-					case LT:
-					case IDENTIFIER: {
-					setState(1166);
-					_errHandler.sync(this);
+				case 5: {
+					_localctx = new TmpExprContext(_localctx);
+					_ctx = _localctx;
+					_prevctx = _localctx;
+					setState(1158);
+					((TmpExprContext) _localctx).prefix = _input.LT(1);
 					_la = _input.LA(1);
-					if (_la==LT) {
-						{
-						setState(1165);
-						typeArguments();
-						}
+					if (!(((((_la - 85)) & ~0x3f) == 0 && ((1L << (_la - 85)) & ((1L << (INC - 85)) | (1L << (DEC - 85)) | (1L << (ADD - 85)) | (1L << (SUB - 85)))) != 0))) {
+						((TmpExprContext) _localctx).prefix = (Token) _errHandler.recoverInline(this);
+					} else {
+						if (_input.LA(1) == Token.EOF) matchedEOF = true;
+						_errHandler.reportMatch(this);
+						consume();
 					}
+					setState(1159);
+					expression(19);
+				}
+				break;
+				case 6: {
+					_localctx = new TmpExprContext(_localctx);
+					_ctx = _localctx;
+					_prevctx = _localctx;
+					setState(1160);
+					((TmpExprContext) _localctx).prefix = _input.LT(1);
+					_la = _input.LA(1);
+					if (!(_la == BANG || _la == TILDE)) {
+						((TmpExprContext) _localctx).prefix = (Token) _errHandler.recoverInline(this);
+					} else {
+						if (_input.LA(1) == Token.EOF) matchedEOF = true;
+						_errHandler.reportMatch(this);
+						consume();
+					}
+					setState(1161);
+					expression(18);
+				}
+				break;
+				case 7: {
+					_localctx = new TmpExprContext(_localctx);
+					_ctx = _localctx;
+					_prevctx = _localctx;
+					setState(1162);
+					lambdaExpression();
+				}
+				break;
+				case 8: {
+					_localctx = new TmpExprContext(_localctx);
+					_ctx = _localctx;
+					_prevctx = _localctx;
+					setState(1163);
+					typeType();
+					setState(1164);
+					match(COLONCOLON);
+					setState(1170);
+					_errHandler.sync(this);
+					switch (_input.LA(1)) {
+						case LT:
+						case IDENTIFIER: {
+							setState(1166);
+							_errHandler.sync(this);
+							_la = _input.LA(1);
+							if (_la == LT) {
+								{
+									setState(1165);
+									typeArguments();
+								}
+							}
 
 					setState(1168);
 					match(IDENTIFIER);
 					}
 					break;
-				case NEW:
-					{
+				case NEW: {
 					setState(1169);
 					match(NEW);
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
-				}
 				}
 				break;
-			case 9: {
-				_localctx = new TmpExprContext(_localctx);
-				_ctx = _localctx;
-				_prevctx = _localctx;
-				setState(1172);
-				classType();
-				setState(1173);
-				match(COLONCOLON);
-				setState(1175);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				if (_la == LT) {
-					{
-						setState(1174);
-					typeArguments();
+						default:
+							throw new NoViableAltException(this);
 					}
 				}
+				break;
+				case 9: {
+					_localctx = new TmpExprContext(_localctx);
+					_ctx = _localctx;
+					_prevctx = _localctx;
+					setState(1172);
+					classType();
+					setState(1173);
+					match(COLONCOLON);
+					setState(1175);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+					if (_la == LT) {
+						{
+							setState(1174);
+							typeArguments();
+						}
+					}
 
 				setState(1177);
 				match(NEW);
@@ -7597,20 +7575,18 @@ public class ArgonParser extends Parser {
 					setState(1259);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,150,_ctx) ) {
-					case 1:
-						{
-							_localctx = new MulExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 1: {
+						_localctx = new MulExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1181);
 						if (!(precpred(_ctx, 17))) throw new FailedPredicateException(this, "precpred(_ctx, 17)");
-							setState(1182);
-							((MulExprContext) _localctx).bop = _input.LT(1);
-							_la = _input.LA(1);
-						if ( !(((((_la - 89)) & ~0x3f) == 0 && ((1L << (_la - 89)) & ((1L << (MUL - 89)) | (1L << (DIV - 89)) | (1L << (MOD - 89)))) != 0)) ) {
+						setState(1182);
+						((MulExprContext) _localctx).bop = _input.LT(1);
+						_la = _input.LA(1);
+						if (!(((((_la - 89)) & ~0x3f) == 0 && ((1L << (_la - 89)) & ((1L << (MUL - 89)) | (1L << (DIV - 89)) | (1L << (MOD - 89)))) != 0))) {
 							((MulExprContext) _localctx).bop = (Token) _errHandler.recoverInline(this);
-						}
-						else {
-							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						} else {
+							if (_input.LA(1) == Token.EOF) matchedEOF = true;
 							_errHandler.reportMatch(this);
 							consume();
 						}
@@ -7618,20 +7594,18 @@ public class ArgonParser extends Parser {
 						expression(18);
 						}
 						break;
-					case 2:
-						{
-							_localctx = new AddExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 2: {
+						_localctx = new AddExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1184);
 						if (!(precpred(_ctx, 16))) throw new FailedPredicateException(this, "precpred(_ctx, 16)");
-							setState(1185);
-							((AddExprContext) _localctx).bop = _input.LT(1);
-							_la = _input.LA(1);
-						if ( !(_la==ADD || _la==SUB) ) {
+						setState(1185);
+						((AddExprContext) _localctx).bop = _input.LT(1);
+						_la = _input.LA(1);
+						if (!(_la == ADD || _la == SUB)) {
 							((AddExprContext) _localctx).bop = (Token) _errHandler.recoverInline(this);
-						}
-						else {
-							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						} else {
+							if (_input.LA(1) == Token.EOF) matchedEOF = true;
 							_errHandler.reportMatch(this);
 							consume();
 						}
@@ -7639,20 +7613,18 @@ public class ArgonParser extends Parser {
 						expression(17);
 						}
 						break;
-					case 3:
-						{
-							_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 3: {
+						_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1187);
 						if (!(precpred(_ctx, 15))) throw new FailedPredicateException(this, "precpred(_ctx, 15)");
 						setState(1195);
 						_errHandler.sync(this);
-						switch ( getInterpreter().adaptivePredict(_input,146,_ctx) ) {
-						case 1:
-							{
-							setState(1188);
-							match(LT);
-							setState(1189);
+						switch (getInterpreter().adaptivePredict(_input, 146, _ctx)) {
+							case 1: {
+								setState(1188);
+								match(LT);
+								setState(1189);
 							match(LT);
 							}
 							break;
@@ -7679,20 +7651,18 @@ public class ArgonParser extends Parser {
 						expression(16);
 						}
 						break;
-					case 4:
-						{
-							_localctx = new CmpExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 4: {
+						_localctx = new CmpExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1198);
 						if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
-							setState(1199);
-							((CmpExprContext) _localctx).bop = _input.LT(1);
-							_la = _input.LA(1);
-						if ( !(((((_la - 73)) & ~0x3f) == 0 && ((1L << (_la - 73)) & ((1L << (GT - 73)) | (1L << (LT - 73)) | (1L << (LE - 73)) | (1L << (GE - 73)))) != 0)) ) {
+						setState(1199);
+						((CmpExprContext) _localctx).bop = _input.LT(1);
+						_la = _input.LA(1);
+						if (!(((((_la - 73)) & ~0x3f) == 0 && ((1L << (_la - 73)) & ((1L << (GT - 73)) | (1L << (LT - 73)) | (1L << (LE - 73)) | (1L << (GE - 73)))) != 0))) {
 							((CmpExprContext) _localctx).bop = (Token) _errHandler.recoverInline(this);
-						}
-						else {
-							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						} else {
+							if (_input.LA(1) == Token.EOF) matchedEOF = true;
 							_errHandler.reportMatch(this);
 							consume();
 						}
@@ -7700,20 +7670,18 @@ public class ArgonParser extends Parser {
 						expression(15);
 						}
 						break;
-					case 5:
-						{
-							_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 5: {
+						_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1201);
 						if (!(precpred(_ctx, 12))) throw new FailedPredicateException(this, "precpred(_ctx, 12)");
-							setState(1202);
-							((TmpExprContext) _localctx).bop = _input.LT(1);
-							_la = _input.LA(1);
-						if ( !(_la==EQUAL || _la==NOTEQUAL) ) {
+						setState(1202);
+						((TmpExprContext) _localctx).bop = _input.LT(1);
+						_la = _input.LA(1);
+						if (!(_la == EQUAL || _la == NOTEQUAL)) {
 							((TmpExprContext) _localctx).bop = (Token) _errHandler.recoverInline(this);
-						}
-						else {
-							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						} else {
+							if (_input.LA(1) == Token.EOF) matchedEOF = true;
 							_errHandler.reportMatch(this);
 							consume();
 						}
@@ -7721,96 +7689,88 @@ public class ArgonParser extends Parser {
 						expression(13);
 						}
 						break;
-					case 6:
-						{
-							_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 6: {
+						_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1204);
 						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
-							setState(1205);
-							((TmpExprContext) _localctx).bop = match(BITAND);
-							setState(1206);
+						setState(1205);
+						((TmpExprContext) _localctx).bop = match(BITAND);
+						setState(1206);
 						expression(12);
-						}
+					}
 						break;
-					case 7:
-						{
-							_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 7: {
+						_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1207);
 						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
-							setState(1208);
-							((TmpExprContext) _localctx).bop = match(CARET);
-							setState(1209);
+						setState(1208);
+						((TmpExprContext) _localctx).bop = match(CARET);
+						setState(1209);
 						expression(11);
-						}
+					}
 						break;
-					case 8:
-						{
-							_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 8: {
+						_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1210);
 						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
-							setState(1211);
-							((TmpExprContext) _localctx).bop = match(BITOR);
-							setState(1212);
+						setState(1211);
+						((TmpExprContext) _localctx).bop = match(BITOR);
+						setState(1212);
 						expression(10);
-						}
+					}
 						break;
-					case 9:
-						{
-							_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 9: {
+						_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1213);
 						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
-							setState(1214);
-							((TmpExprContext) _localctx).bop = match(AND);
-							setState(1215);
+						setState(1214);
+						((TmpExprContext) _localctx).bop = match(AND);
+						setState(1215);
 						expression(9);
-						}
+					}
 						break;
-					case 10:
-						{
-							_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 10: {
+						_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1216);
 						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
-							setState(1217);
-							((TmpExprContext) _localctx).bop = match(OR);
-							setState(1218);
+						setState(1217);
+						((TmpExprContext) _localctx).bop = match(OR);
+						setState(1218);
 						expression(8);
-						}
+					}
 						break;
-					case 11:
-						{
-							_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 11: {
+						_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1219);
 						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-							setState(1220);
-							((TmpExprContext) _localctx).bop = match(QUESTION);
-							setState(1221);
+						setState(1220);
+						((TmpExprContext) _localctx).bop = match(QUESTION);
+						setState(1221);
 						expression(0);
 						setState(1222);
 						match(COLON);
 						setState(1223);
 						expression(6);
-						}
+					}
 						break;
-					case 12:
-						{
-							_localctx = new AssignExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 12: {
+						_localctx = new AssignExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1225);
 						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
-							setState(1226);
-							((AssignExprContext) _localctx).bop = _input.LT(1);
-							_la = _input.LA(1);
-						if ( !(((((_la - 72)) & ~0x3f) == 0 && ((1L << (_la - 72)) & ((1L << (ASSIGN - 72)) | (1L << (ADD_ASSIGN - 72)) | (1L << (SUB_ASSIGN - 72)) | (1L << (MUL_ASSIGN - 72)) | (1L << (DIV_ASSIGN - 72)) | (1L << (AND_ASSIGN - 72)) | (1L << (OR_ASSIGN - 72)) | (1L << (XOR_ASSIGN - 72)) | (1L << (MOD_ASSIGN - 72)) | (1L << (LSHIFT_ASSIGN - 72)) | (1L << (RSHIFT_ASSIGN - 72)) | (1L << (URSHIFT_ASSIGN - 72)))) != 0)) ) {
+						setState(1226);
+						((AssignExprContext) _localctx).bop = _input.LT(1);
+						_la = _input.LA(1);
+						if (!(((((_la - 72)) & ~0x3f) == 0 && ((1L << (_la - 72)) & ((1L << (ASSIGN - 72)) | (1L << (ADD_ASSIGN - 72)) | (1L << (SUB_ASSIGN - 72)) | (1L << (MUL_ASSIGN - 72)) | (1L << (DIV_ASSIGN - 72)) | (1L << (AND_ASSIGN - 72)) | (1L << (OR_ASSIGN - 72)) | (1L << (XOR_ASSIGN - 72)) | (1L << (MOD_ASSIGN - 72)) | (1L << (LSHIFT_ASSIGN - 72)) | (1L << (RSHIFT_ASSIGN - 72)) | (1L << (URSHIFT_ASSIGN - 72)))) != 0))) {
 							((AssignExprContext) _localctx).bop = (Token) _errHandler.recoverInline(this);
-						}
-						else {
-							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						} else {
+							if (_input.LA(1) == Token.EOF) matchedEOF = true;
 							_errHandler.reportMatch(this);
 							consume();
 						}
@@ -7818,25 +7778,22 @@ public class ArgonParser extends Parser {
 						expression(5);
 						}
 						break;
-					case 13:
-						{
-							_localctx = new DotExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 13: {
+						_localctx = new DotExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1228);
 						if (!(precpred(_ctx, 25))) throw new FailedPredicateException(this, "precpred(_ctx, 25)");
-							setState(1229);
-							((DotExprContext) _localctx).bop = match(DOT);
-							setState(1241);
+						setState(1229);
+						((DotExprContext) _localctx).bop = match(DOT);
+						setState(1241);
 						_errHandler.sync(this);
-						switch ( getInterpreter().adaptivePredict(_input,148,_ctx) ) {
-						case 1:
-							{
-							setState(1230);
-							match(IDENTIFIER);
+						switch (getInterpreter().adaptivePredict(_input, 148, _ctx)) {
+							case 1: {
+								setState(1230);
+								match(IDENTIFIER);
 							}
 							break;
-						case 2:
-							{
+							case 2: {
 							setState(1231);
 							methodCall();
 							}
@@ -7882,10 +7839,9 @@ public class ArgonParser extends Parser {
 						}
 						}
 						break;
-					case 14:
-						{
-							_localctx = new ArrayExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 14: {
+						_localctx = new ArrayExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1243);
 						if (!(precpred(_ctx, 24))) throw new FailedPredicateException(this, "precpred(_ctx, 24)");
 						setState(1244);
@@ -7894,43 +7850,39 @@ public class ArgonParser extends Parser {
 						expression(0);
 						setState(1246);
 						match(RBRACK);
-						}
+					}
 						break;
-					case 15:
-						{
-							_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 15: {
+						_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1248);
 						if (!(precpred(_ctx, 20))) throw new FailedPredicateException(this, "precpred(_ctx, 20)");
-							setState(1249);
-							((TmpExprContext) _localctx).postfix = _input.LT(1);
-							_la = _input.LA(1);
-						if ( !(_la==INC || _la==DEC) ) {
+						setState(1249);
+						((TmpExprContext) _localctx).postfix = _input.LT(1);
+						_la = _input.LA(1);
+						if (!(_la == INC || _la == DEC)) {
 							((TmpExprContext) _localctx).postfix = (Token) _errHandler.recoverInline(this);
-						}
-						else {
-							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+						} else {
+							if (_input.LA(1) == Token.EOF) matchedEOF = true;
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						}
+					}
 						break;
-					case 16:
-						{
-							_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 16: {
+						_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1250);
 						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
-							setState(1251);
-							((TmpExprContext) _localctx).bop = match(INSTANCEOF);
-							setState(1252);
+						setState(1251);
+						((TmpExprContext) _localctx).bop = match(INSTANCEOF);
+						setState(1252);
 						typeType();
-						}
+					}
 						break;
-					case 17:
-						{
-							_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
-							pushNewRecursionContext(_localctx, _startState, RULE_expression);
+					case 17: {
+						_localctx = new TmpExprContext(new ExpressionContext(_parentctx, _parentState));
+						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(1253);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(1254);
@@ -7938,9 +7890,9 @@ public class ArgonParser extends Parser {
 						setState(1256);
 						_errHandler.sync(this);
 						_la = _input.LA(1);
-						if (_la==LT) {
+						if (_la == LT) {
 							{
-							setState(1255);
+								setState(1255);
 							typeArguments();
 							}
 						}

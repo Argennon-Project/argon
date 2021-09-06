@@ -894,17 +894,21 @@ public interface ArgonParserListener extends ParseTreeListener {
 	 */
 	void exitParExpression(ArgonParser.ParExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ArgonParser#expressionList}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpressionList(ArgonParser.ExpressionListContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgonParser#expressionList}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpressionList(ArgonParser.ExpressionListContext ctx);
-	/**
+     * Enter a parse tree produced by {@link ArgonParser#expressionList}.
+     * @param ctx the parse tree
+     */
+    void enterExpressionList(ArgonParser.ExpressionListContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link ArgonParser#expressionList}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitExpressionList(ArgonParser.ExpressionListContext ctx);
+
+    /**
      * Enter a parse tree produced by {@link ArgonParser#methodCall}.
+     *
      * @param ctx the parse tree
      */
     void enterMethodCall(ArgonParser.MethodCallContext ctx);
@@ -1073,16 +1077,20 @@ public interface ArgonParserListener extends ParseTreeListener {
      * @param ctx the parse tree
      */
     void exitLambdaExpression(ArgonParser.LambdaExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link ArgonParser#lambdaParameters}.
-	 * @param ctx the parse tree
-	 */
-	void enterLambdaParameters(ArgonParser.LambdaParametersContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ArgonParser#lambdaParameters}.
-	 * @param ctx the parse tree
-	 */
-	void exitLambdaParameters(ArgonParser.LambdaParametersContext ctx);
+
+    /**
+     * Enter a parse tree produced by {@link ArgonParser#lambdaParameters}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterLambdaParameters(ArgonParser.LambdaParametersContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link ArgonParser#lambdaParameters}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitLambdaParameters(ArgonParser.LambdaParametersContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ArgonParser#lambdaBody}.
 	 * @param ctx the parse tree

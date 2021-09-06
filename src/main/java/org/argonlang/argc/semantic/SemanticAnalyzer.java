@@ -50,7 +50,9 @@ public class SemanticAnalyzer {
         MODIFIER_ERROR("%s is incompatible with current modifiers"),
         TYPE_CAST_ERROR("%s can not be implicitly cast to %s"),
         SOME_WARNING("this is warning %1$s"),
-        OP_NOT_APPLICABLE("%s is not applicable to %s and %s");
+        OP_NOT_APPLICABLE("%s is not applicable to %s and %s"),
+        INDEX_TYPE_ERROR("array index must be an integer"),
+        NOT_ARRAY_ERROR("type '%s' can not be indexed");
 
         public final String formatStr;
 
