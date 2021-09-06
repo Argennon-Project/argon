@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="argon:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/argon_jar</output-path>
+    <root id="archive" name="argon.jar">
+      <element id="module-output" name="argon" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/antlr-4.9.2-complete.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

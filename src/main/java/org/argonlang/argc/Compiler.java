@@ -63,7 +63,7 @@ public class Compiler {
         }
 
         // pass 3: generate code
-        reporter.generalMessage("Generating code...");
+        reporter.generalMessage("Semantic Analysis...");
         for (String fileName : trees.keySet()) {
             semanticAnalyzer.setFile(fileName);
             ParseTreeWalker walker = new ParseTreeWalker();
