@@ -1,15 +1,23 @@
-package mypack;
+package pack;
 
-public class MyClass {
-    public static int V;
-    public int[] x;
+class MyClass {
+    int f() {
+        x = 0.1;
+    }
+
+    int g(float y) {
+        g(2.2);
+    }
+
+    private int x;
 }
 
 class Test {
+    private MyClass obj;
+    int x;
+
     int f() {
-        MyClass.V;
-        int[] x;
-        float y;
-        y = x[2];
+        x = 2 + 2.1;
+        x = obj.g(2) + 2.1;
     }
 }

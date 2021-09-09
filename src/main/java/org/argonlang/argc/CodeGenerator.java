@@ -71,7 +71,7 @@ class CodeGenerator extends PackageBasedParserListener {
                 paramTypes[i] = getType(paramExprList.get(i));
             }
         }
-        types.put(ctx, new FunctionType(PrimitiveType.VOID, ctx.IDENTIFIER().getText(), paramTypes));
+        types.put(ctx, new FunctionType(PrimitiveType.UNDEFINED, ctx.IDENTIFIER().getText(), paramTypes));
     }
 
     @Override
@@ -100,9 +100,10 @@ class CodeGenerator extends PackageBasedParserListener {
     public void exitDotExpr(ArgonParser.DotExprContext ctx) {
         var left = ctx.expression();
         String identifier = "";
+        FunctionType funcType = null;
         if (ctx.methodCall() != null) {
-            FunctionType funcType = (FunctionType) types.get(ctx.methodCall());
-            identifier = funcType.getFullName();
+            funcType = (FunctionType) types.get(ctx.methodCall());
+            identifier = funcType.getMethod();
         } else if (ctx.IDENTIFIER() != null) {
             identifier = ctx.IDENTIFIER().getText();
         }
@@ -117,7 +118,55 @@ class CodeGenerator extends PackageBasedParserListener {
             } else {
                 v = withContext(ctx).getObjectMember(t, identifier);
             }
-            types.put(ctx, v.getType());
+            if (funcType != null) {
+                types.put(ctx, checkMethodCallType(ctx.methodCall(), v.getType(), funcType));
+            } else {
+                types.put(ctx, v.getType());
+            }
+        }
+    }
+
+    @Override
+    public void exitMethodCallExpr(ArgonParser.MethodCallExprContext ctx) {
+        FunctionType called = (FunctionType) types.get(ctx.methodCall());
+        Variable v = withContext(ctx).getLocalVariable(called.getMethod());
+        types.put(ctx, checkMethodCallType(ctx.methodCall(), v.getType(), called));
+    }
+
+    private Type checkMethodCallType(ArgonParser.MethodCallContext ctx, Type required, FunctionType call) {
+        if (required == PrimitiveType.UNDEFINED) return required;
+        if (!(required instanceof FunctionType requiredFunc)) {
+            error(ctx, MessageFormat.NOT_A_FUNCTION, call.getMethod());
+            return PrimitiveType.UNDEFINED;
+        }
+        try {
+            requiredFunc.checkIfCastsTo(call);
+        } catch (FunctionCastException e) {
+            if (e.reason == FunctionCastException.Reason.PARAM) {
+                error(ctx.expressionList().expression(e.nonCastableParamPlace()), MessageFormat.PARAM_CAST_ERROR,
+                        toOrdinal(e.nonCastableParamPlace() + 1),
+                        call.getMethod(),
+                        e.paramGivenType,
+                        e.paramExpectedType
+                );
+            } else if (e.reason == FunctionCastException.Reason.PARAM_COUNT) {
+                error(ctx, MessageFormat.PARAM_COUNT_ERROR, call.getMethod());
+            } else {
+                throw new IllegalStateException("invalid cast exception");
+            }
+        }
+        return requiredFunc.getReturnType();
+    }
+
+    private static String toOrdinal(int i) {
+        String[] suffixes = new String[]{"th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th"};
+        switch (i % 100) {
+            case 11:
+            case 12:
+            case 13:
+                return i + "th";
+            default:
+                return i + suffixes[i % 10];
         }
     }
 
@@ -126,7 +175,7 @@ class CodeGenerator extends PackageBasedParserListener {
         Type left = getType(ctx.expression(0));
         Type right = getType(ctx.expression(1));
         if (!right.castsTo(left)) {
-            error(ctx, MessageFormat.TYPE_CAST_ERROR, right.getSymbol(), left.getSymbol());
+            error(ctx, MessageFormat.TYPE_CAST_ERROR, right, left);
         }
         types.put(ctx, left);
     }
@@ -148,7 +197,7 @@ class CodeGenerator extends PackageBasedParserListener {
                 (left.castsTo(PrimitiveType.FLOAT) && right.castsTo(PrimitiveType.FLOAT))) {
             types.put(ctx, left);
         } else {
-            error(ctx, MessageFormat.OP_NOT_APPLICABLE, ctx.bop.getText(), left.getSymbol(), right.getSymbol());
+            error(ctx, MessageFormat.OP_NOT_APPLICABLE, ctx.bop.getText(), left, right);
             types.put(ctx, PrimitiveType.UNDEFINED);
         }
     }
@@ -164,7 +213,7 @@ class CodeGenerator extends PackageBasedParserListener {
         if (type instanceof ArrayType) {
             types.put(ctx, ((ArrayType) type).typeOfElements());
         } else {
-            error(array, MessageFormat.NOT_ARRAY_ERROR, type.getSymbol());
+            error(array, MessageFormat.NOT_ARRAY_ERROR, type);
             types.put(ctx, PrimitiveType.UNDEFINED);
         }
     }

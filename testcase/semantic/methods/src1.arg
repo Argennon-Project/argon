@@ -1,0 +1,44 @@
+package pack1;
+
+class A {
+    int f(int x) {
+    }
+
+    int g(A a, B b) {
+    }
+
+    void h() {
+        int x;
+        A a;
+        B b;
+        x = f();
+        x = f(x) + g(a, b);
+        f(2);
+        f(1.2);
+        g(a, B);
+        g(a, b);
+        g(2, b);
+        x = g(a, b) + B.f(2);
+        x = g(a, b) + B.f();
+    }
+
+    static A getA(int x) {
+    }
+}
+
+public class B {
+    static float f() {
+        int x;
+        B b;
+        A a;
+        b = A.getA(x);
+        a = A.getA(b);
+        a = A.getA(x);
+        a.g(a, b, 2);
+        x = a.g(a, b) + b.f();
+        x = a.g(a, b) + a.f(2);
+        x = g(2);
+        x = A.h();
+        a.h(x);
+    }
+}

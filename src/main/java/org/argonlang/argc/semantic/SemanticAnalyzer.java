@@ -52,7 +52,10 @@ public class SemanticAnalyzer {
         SOME_WARNING("this is warning %1$s"),
         OP_NOT_APPLICABLE("%s is not applicable to %s and %s"),
         INDEX_TYPE_ERROR("array index must be an integer"),
-        NOT_ARRAY_ERROR("type '%s' can not be indexed");
+        NOT_ARRAY_ERROR("type '%s' can not be indexed"),
+        PARAM_CAST_ERROR("%s parameter of %s: cannot cast %s to %s"),
+        PARAM_COUNT_ERROR("invalid number of parameters for %s"),
+        NOT_A_FUNCTION("%s is not a function");
 
         public final String formatStr;
 

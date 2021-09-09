@@ -1,5 +1,7 @@
 package org.argonlang.argc.allocator;
 
+import static org.argonlang.argc.allocator.FunctionCastException.Reason;
+
 public class FunctionType extends Type {
     private static long id = 0;
 
@@ -19,6 +21,36 @@ public class FunctionType extends Type {
         this.symbol = typeAssertion();
     }
 
+    @Override
+    public boolean castsTo(Type t) {
+        try {
+            checkIfCastsTo(t);
+            return true;
+        } catch (FunctionCastException e) {
+            return false;
+        }
+    }
+
+    public void checkIfCastsTo(Type t) throws FunctionCastException {
+        if (!(t instanceof FunctionType other)) {
+            throw new FunctionCastException(Reason.TYPE);
+        }
+        if (!returnType.castsTo(other.returnType)) {
+            throw new FunctionCastException(Reason.RETURN);
+        }
+        if (!method.equals(other.method)) {
+            throw new FunctionCastException(Reason.NAME);
+        }
+        if (other.params.length != params.length) {
+            throw new FunctionCastException(Reason.PARAM_COUNT);
+        }
+        for (int i = 0; i < params.length; i++) {
+            if (!other.params[i].castsTo(params[i])) {
+                throw new FunctionCastException(i, other.params[i], params[i]);
+            }
+        }
+    }
+
     public String typeAssertion() {
         return String.format("func<%s %s(%s)>", returnType.symbol, method, getParamsTypeAssertion());
     }
@@ -36,6 +68,13 @@ public class FunctionType extends Type {
         return method;
     }
 
+    public Type getReturnType() {
+        return returnType;
+    }
+
+    public Type getParam(int i) {
+        return params[i];
+    }
 
     @Override
     public long inlineSize() {

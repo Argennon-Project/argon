@@ -23,7 +23,7 @@ class SemanticFileBasedTest {
     }
 
     @Test
-    @DisplayName("simple importing")
+    @DisplayName("import1")
     void simpleImport() throws IOException {
         String folderName = "import1";
         expected.changeCurrentFile("src2.arg");
@@ -33,7 +33,7 @@ class SemanticFileBasedTest {
     }
 
     @Test
-    @DisplayName("advanced import test")
+    @DisplayName("import2")
     void advancedImport() throws IOException {
         String folderName = "import2";
         expected.changeCurrentFile("src1.arg");
@@ -50,13 +50,14 @@ class SemanticFileBasedTest {
     }
 
     @Test
-    @DisplayName("type declaration")
+    @DisplayName("declare1")
     void typeDeclare() throws IOException {
         String folderName = "declare1";
         expected.changeCurrentFile("src1.arg");
         expected.error(3, TYPE_ALREADY_DEFINED, "B", "p");
 
         expected.changeCurrentFile("src2.arg");
+        expected.error(6, SHADOWING_ERROR, "f");
         expected.error(6, NOT_DEFINED_IN_PKG, "F", "p");
         expected.error(11, NOT_DEFINED_IN_PKG, "D", "p");
 
@@ -64,7 +65,7 @@ class SemanticFileBasedTest {
     }
 
     @Test
-    @DisplayName("variable declaration")
+    @DisplayName("declare2")
     void varDeclare() throws IOException {
         String folderName = "declare2";
 
@@ -107,24 +108,47 @@ class SemanticFileBasedTest {
     }
 
     @Test
-    @DisplayName("access modifiers")
+    @DisplayName("access")
     void access() throws IOException {
         String folderName = "access";
         expected.changeCurrentFile("src1.arg");
         expected.error(48, MEMBER_NOT_ACCESSIBLE, "A", "x", "B");
-        expected.error(52, MEMBER_NOT_ACCESSIBLE, "A", "f()", "B");
+        expected.error(52, MEMBER_NOT_ACCESSIBLE, "A", "f", "B");
         expected.error(56, MEMBER_NOT_ACCESSIBLE, "A", "sx", "B");
-        expected.error(60, MEMBER_NOT_ACCESSIBLE, "A", "sf()", "B");
+        expected.error(60, MEMBER_NOT_ACCESSIBLE, "A", "sf", "B");
 
         expected.changeCurrentFile("src2.arg");
         expected.error(8, MEMBER_NOT_ACCESSIBLE, "A", "x", "C");
         expected.error(9, MEMBER_NOT_ACCESSIBLE, "A", "y", "C");
-        expected.error(12, MEMBER_NOT_ACCESSIBLE, "A", "f()", "C");
-        expected.error(13, MEMBER_NOT_ACCESSIBLE, "A", "g()", "C");
+        expected.error(12, MEMBER_NOT_ACCESSIBLE, "A", "f", "C");
+        expected.error(13, MEMBER_NOT_ACCESSIBLE, "A", "g", "C");
         expected.error(16, MEMBER_NOT_ACCESSIBLE, "A", "sx", "C");
         expected.error(17, MEMBER_NOT_ACCESSIBLE, "A", "sy", "C");
-        expected.error(20, MEMBER_NOT_ACCESSIBLE, "A", "sf()", "C");
-        expected.error(21, MEMBER_NOT_ACCESSIBLE, "A", "sg()", "C");
+        expected.error(20, MEMBER_NOT_ACCESSIBLE, "A", "sf", "C");
+        expected.error(21, MEMBER_NOT_ACCESSIBLE, "A", "sg", "C");
+
+        compileAndCheck(folderName);
+    }
+
+    @Test
+    @DisplayName("methods")
+    void methodCall() throws IOException {
+        String folderName = "methods";
+        expected.changeCurrentFile("src1.arg");
+        expected.error(14, PARAM_COUNT_ERROR, "f");
+        expected.error(17, PARAM_CAST_ERROR, "1st", "f", "float", "int");
+        expected.error(18, PARAM_CAST_ERROR, "2nd", "g", "B.class", "B");
+        expected.error(20, PARAM_CAST_ERROR, "1st", "g", "int", "A");
+        expected.error(21, OP_NOT_APPLICABLE, "+", "int", "float");
+        expected.error(21, PARAM_COUNT_ERROR, "f");
+        expected.error(22, OP_NOT_APPLICABLE, "+", "int", "float");
+        expected.error(34, TYPE_CAST_ERROR, "A", "B");
+        expected.error(35, PARAM_CAST_ERROR, "1st", "getA", "B", "int");
+        expected.error(37, PARAM_COUNT_ERROR, "g");
+        expected.error(38, NOT_DEFINED_IN_OBJECT, "f", "B");
+        expected.error(40, NOT_DEFINED_LOCAL, "g");
+        expected.error(41, NOT_DEFINED_IN_CLASS, "h", "A");
+        expected.error(42, PARAM_COUNT_ERROR, "h");
 
         compileAndCheck(folderName);
     }

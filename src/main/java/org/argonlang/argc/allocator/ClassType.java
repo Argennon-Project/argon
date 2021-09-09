@@ -49,7 +49,7 @@ public class ClassType extends Type {
 
     public void addMethod(FunctionType type, Modifier m) {
         Variable v = new Variable(
-                type.getFullName(),
+                type.getMethod(),
                 type,
                 FunctionType.generateID(),
                 this,
@@ -96,21 +96,6 @@ public class ClassType extends Type {
     public long objectSize() {
         return objectMembers.size();
     }
-
-    @Override
-    public String toString() {
-        return "ClassType{" +
-                "staticMembers=" + staticMembers +
-                ", objectMembers=" + objectMembers +
-                ", staticAddress=" + staticAddress +
-                ", parentPackage='" + parentPackage + '\'' +
-                ", modifier=" + modifier +
-                ", containerClass=" + containerClass +
-                ", symbol='" + symbol + '\'' +
-                ", superType=" + superType +
-                '}';
-    }
-
 }
 
 

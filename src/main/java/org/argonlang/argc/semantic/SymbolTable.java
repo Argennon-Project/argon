@@ -92,8 +92,8 @@ public class SymbolTable {
 
     public void declareMethod(String name, Type returnType, Type[] params, Modifier m) {
         var f = new FunctionType(returnType, name, params);
-        if (lookUpLocalVariable(f.getFullName()) != null) {
-            analyzer.error(MessageFormat.METHOD_ALREADY_DEFINED, f.getFullName(), currentClass.getSymbol());
+        if (lookUpLocalVariable(f.getMethod()) != null) {
+            analyzer.error(MessageFormat.METHOD_ALREADY_DEFINED, f.getFullName(), currentClass);
             return;
         }
         currentClass.addMethod(f, m);
@@ -101,7 +101,7 @@ public class SymbolTable {
 
     public void declareField(String name, Type t, Modifier m) {
         if (lookUpLocalVariable(name) != null) {
-            analyzer.error(MessageFormat.FIELD_ALREADY_DEFINED, name, currentClass.getSymbol());
+            analyzer.error(MessageFormat.FIELD_ALREADY_DEFINED, name, currentClass);
             return;
         }
         currentClass.addField(name, t, m);
@@ -128,13 +128,12 @@ public class SymbolTable {
     public Variable getObjectMember(Type owner, String variableName) {
         Variable result = owner.getObjectVariable(variableName);
         if (result == null) {
-            analyzer.error(MessageFormat.NOT_DEFINED_IN_OBJECT, variableName, owner.getSymbol());
+            analyzer.error(MessageFormat.NOT_DEFINED_IN_OBJECT, variableName, owner);
             return new Variable(variableName, PrimitiveType.UNDEFINED,
                     0, owner, new Modifier(PUBLIC));
         }
         if (!result.isAccessibleFrom(currentClass)) {
-            analyzer.error(MessageFormat.MEMBER_NOT_ACCESSIBLE,
-                    owner.getSymbol(), variableName, currentClass.getSymbol());
+            analyzer.error(MessageFormat.MEMBER_NOT_ACCESSIBLE, owner, variableName, currentClass);
         }
         return result;
     }
@@ -142,12 +141,12 @@ public class SymbolTable {
     public Variable getStaticMember(Type owner, String variableName) {
         Variable result = owner.getStaticVariable(variableName);
         if (result == null) {
-            analyzer.error(MessageFormat.NOT_DEFINED_IN_CLASS, variableName, owner.getSymbol());
+            analyzer.error(MessageFormat.NOT_DEFINED_IN_CLASS, variableName, owner);
             return new Variable(variableName, PrimitiveType.UNDEFINED,
                     0, owner, new Modifier(PUBLIC, STATIC));
         }
         if (!result.isAccessibleFrom(currentClass)) {
-            analyzer.error(MessageFormat.MEMBER_NOT_ACCESSIBLE, owner.getSymbol(), variableName, currentClass.getSymbol());
+            analyzer.error(MessageFormat.MEMBER_NOT_ACCESSIBLE, owner, variableName, currentClass);
         }
         return result;
 
